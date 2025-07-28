@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tra cứu phạt nguội - Hệ thống quản lý giao thông</title>
+    <link rel="stylesheet" href="violation-style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header-left">
+                <div class="logo">
+                    <i class="fas fa-robot"></i>
+                    <span class="gradient-text">Tra cứu phạt nguội</span>
+                </div>
+                <nav class="nav-menu">
+                    <a href="#" class="nav-link"><span><i class="fas fa-chart-line"></i> Dashboard</span></a>
+                    <a href="#" class="nav-link"><span><i class="fas fa-map-marked-alt"></i> Bản đồ</span></a>
+                    <a href="#" class="nav-link active"><span><i class="fas fa-exclamation-triangle"></i> Vi phạm</span></a>
+                    <a href="#" class="nav-link"><span><i class="fas fa-cog"></i> Cài đặt</span></a>
+                </nav>
+            </div>
+            <div class="header-right">
+                <div class="notification-bell">
+                    <i class="fas fa-bell"></i>
+                    <div class="notification-badge">3</div>
+                </div>
+                <button class="login-btn">
+                    <i class="fas fa-user-circle"></i>
+                    <span>Đăng nhập</span>
+                </button>
+                <div class="user-avatar">
+                    <img src="picture-icon-no-image-symbol-260nw-1572613234.webp" alt="User Avatar">
+                    <div class="online-status"></div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="page-wrapper">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <i class="fas fa-traffic-light"></i>
+                    <span>TrafficPRO</span>
+                </div>
+            </div>
+            <nav class="sidebar-nav">
+                <a href="index.html" class="nav-item">
+                    <i class="fas fa-home-lg-alt"></i>
+                    <span>Trang chủ</span>
+                </a>
+                <a href="violation.html" class="nav-item active">
+                    <i class="fas fa-search"></i>
+                    <span>Tra cứu vi phạm</span>
+                </a>
+                <div class="nav-item dropdown">
+                    <i class="fas fa-chart-pie"></i>
+                    <span>Thống kê</span>
+                    <i class="fas fa-chevron-down dropdown-icon"></i>
+                </div>
+                <div class="dropdown-content">
+                    <a href="#" class="dropdown-item">Theo loại vi phạm</a>
+                    <a href="#" class="dropdown-item">Theo khu vực</a>
+                    <a href="#" class="dropdown-item">Theo thời gian</a>
+                </div>
+                <a href="#" class="nav-item">
+                    <i class="fas fa-map-marked-alt"></i>
+                    <span>Bản đồ Live</span>
+                </a>
+                <a href="#" class="nav-item">
+                    <i class="fas fa-bell"></i>
+                    <span>Cảnh báo</span>
+                    <span class="notification-badge">3</span>
+                </a>
+            </nav>
+            <div class="sidebar-footer">
+                <div class="user-profile">
+                    <img src="https://i.pravatar.cc/40?u=dangvanchien" alt="User Avatar" class="avatar">
+                    <div class="user-info">
+                        <span class="user-name">Đặng Văn Chiến</span>
+                        <span class="user-role">Quản trị viên</span>
+                    </div>
+                    <i class="fas fa-sign-out-alt"></i>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="main-header">
+                <div class="header-title">
+                    <h1>Tra Cứu & Phân Tích Vi Phạm</h1>
+                    <p>Nền tảng toàn diện để giám sát và xử lý vi phạm giao thông</p>
+                </div>
+                <div class="header-actions">
+                    <button class="action-btn"><i class="fas fa-plus"></i> Thêm báo cáo</button>
+                    <button class="action-btn icon-btn"><i class="fas fa-cog"></i></button>
+                </div>
+            </header>
+
+            <section class="tech-intro-section">
+                <div class="tech-section-header">
+                    <h2>Công Nghệ AI Tiên Tiến</h2>
+                    <p>Hệ thống sử dụng những công nghệ trí tuệ nhân tạo hàng đầu để đảm bảo độ chính xác và hiệu quả cao nhất</p>
+                    <div class="header-decoration"></div>
+                </div>
+                <div class="tech-cards-grid">
+                    <div class="tech-card" data-aos="fade-up" data-aos-delay="100">
+                        <div class="tech-icon" style="color: #3498db; background: linear-gradient(135deg, #eaf4fc 0%, #d6ebf5 100%);">
+                            <i class="fas fa-robot"></i>
+                        </div>
+                        <h3>Phát Hiện Đối Tượng với YOLO</h3>
+                        <p>Sử dụng mô hình YOLO (You Only Look Once) tiên tiến để tự động xác định và khoanh vùng các phương tiện vi phạm trong hình ảnh và video với độ chính xác cao lên đến 95%.</p>
+                        <div class="tech-stats">
+                            <span class="stat-badge">95% Độ chính xác</span>
+                            <span class="stat-badge">0.1s Thời gian xử lý</span>
+                        </div>
+                    </div>
+                    <div class="tech-card" data-aos="fade-up" data-aos-delay="200">
+                        <div class="tech-icon" style="color: #2ecc71; background: linear-gradient(135deg, #eafaf1 0%, #d5f4e6 100%);">
+                            <i class="fas fa-id-card"></i>
+                        </div>
+                        <h3>Nhận Dạng Biển Số (OCR)</h3>
+                        <p>Công nghệ Nhận dạng ký tự quang học (OCR) thông minh giúp trích xuất và đọc biển số xe từ hình ảnh một cách nhanh chóng, ngay cả trong điều kiện ánh sáng yếu.</p>
+                        <div class="tech-stats">
+                            <span class="stat-badge">98% Độ chính xác</span>
+                            <span class="stat-badge">24/7 Hoạt động</span>
+                        </div>
+                    </div>
+                    <div class="tech-card" data-aos="fade-up" data-aos-delay="300">
+                        <div class="tech-icon" style="color: #e67e22; background: linear-gradient(135deg, #fdf3e9 0%, #f8e6d3 100%);">
+                            <i class="fas fa-brain"></i>
+                        </div>
+                        <h3>Phân Tích & Cảnh Báo Thông Minh</h3>
+                        <p>Hệ thống tự động phân tích dữ liệu, phát hiện các điểm nóng vi phạm và cung cấp cảnh báo theo thời gian thực để hỗ trợ công tác điều phối giao thông hiệu quả.</p>
+                        <div class="tech-stats">
+                            <span class="stat-badge">Real-time Analysis</span>
+                            <span class="stat-badge">Smart Alerts</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="content-section">
+                <div class="search-container">
+                    <div class="search-bar">
+                        <i class="fas fa-search search-icon"></i>
+                        <input type="text" placeholder="Nhập biển số xe, ví dụ: 30H-123.45" class="search-input">
+                        <button class="search-btn">Tra cứu</button>
+                    </div>
+                    <div class="filter-options">
+                        <button class="filter-btn active">Tất cả</button>
+                        <button class="filter-btn">Ô tô</button>
+                        <button class="filter-btn">Xe máy</button>
+                        <button class="filter-btn">Xe tải</button>
+                    </div>
+                </div>
+
+                <div class="vehicle-info-container">
+                    <div class="vehicle-images-section">
+                        <div class="main-vehicle-image">
+                            <img src="https://images.unsplash.com/photo-1449824913935-59a10b8d2000?q=80&w=2070&auto=format&fit=crop" alt="Main vehicle image">
+                            <div class="image-tag">Ảnh chụp vi phạm</div>
+                        </div>
+                        <div class="thumbnail-gallery">
+                            <div class="thumbnail-item active" data-tag="Ảnh chụp vi phạm">
+                                <img src="https://images.unsplash.com/photo-1449824913935-59a10b8d2000?q=80&w=200&auto=format&fit=crop" alt="Thumbnail 1">
+                            </div>
+                            <div class="thumbnail-item" data-tag="Ảnh toàn cảnh">
+                                <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?q=80&w=200&auto=format&fit=crop" alt="Thumbnail 2">
+                            </div>
+                            <div class="thumbnail-item" data-tag="Ảnh cận cảnh biển số">
+                                <img src="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?q=80&w=200&auto=format&fit=crop" alt="Thumbnail 3">
+                            </div>
+                            <div class="thumbnail-item thumbnail-placeholder">
+                                <div class="placeholder-content">
+                                    <i class="fas fa-plus"></i>
+                                    <span>Xem thêm</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="vehicle-details-section">
+                        <div class="vehicle-owner-info">
+                            <div class="owner-avatar">
+                                <i class="fas fa-user"></i>
+                            </div>
+                            <div class="owner-text">
+                                <h3>Đặng Văn Chiến</h3>
+                                <h4>Chủ phương tiện</h4>
+                            </div>
+                            <div class="vehicle-plate">30H-144.XX</div>
+                        </div>
+
+                        <div class="info-accordion">
+                            <div class="accordion-item active">
+                                <div class="accordion-header">
+                                    <div class="header-content">
+                                        <i class="fas fa-exclamation-triangle"></i>
+                                        <span>Chi tiết vi phạm</span>
+                                    </div>
+                                    <i class="fas fa-chevron-down"></i>
+                                </div>
+                                <div class="accordion-content">
+                                    <ul>
+                                        <li><span>Vượt đèn đỏ:</span> Ngã tư Sở, 13:44 25/07/2025</li>
+                                        <li><span>Quá tốc độ:</span> 70/50km/h tại đường Láng</li>
+                                        <li><span>Đi ngược chiều:</span> Phố Chùa Bộc</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="accordion-item">
+                                <div class="accordion-header">
+                                    <div class="header-content">
+                                        <i class="fas fa-info-circle"></i>
+                                        <span>Thông tin phương tiện</span>
+                                    </div>
+                                    <i class="fas fa-chevron-down"></i>
+                                </div>
+                                <div class="accordion-content">
+                                    <ul>
+                                        <li><span>Loại xe:</span> Honda SH 150i</li>
+                                        <li><span>Màu sơn:</span> Trắng</li>
+                                        <li><span>Ngày đăng ký:</span> 15/03/2022</li>
+                                        <li><span>Hạn đăng kiểm:</span> 15/03/2026 (Còn hạn)</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="accordion-item">
+                                <div class="accordion-header">
+                                    <div class="header-content">
+                                        <i class="fas fa-history"></i>
+                                        <span>Lịch sử xử phạt</span>
+                                    </div>
+                                    <i class="fas fa-chevron-down"></i>
+                                </div>
+                                <div class="accordion-content">
+                                    <ul>
+                                        <li><span>Tổng số lần vi phạm:</span> 3</li>
+                                        <li><span>Đã xử phạt:</span> 1 (500.000đ)</li>
+                                        <li><span>Chưa xử phạt:</span> 2</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="action-btn primary-btn"><i class="fas fa-file-invoice-dollar"></i> Lập biên bản xử phạt</button>
+                    </div>
+                </div>
+
+                <!-- Vehicle Theft Tracking Section -->
+                <div class="theft-tracking-container">
+                    <div class="theft-header">
+                        <div class="theft-title-wrapper">
+                            <div class="theft-icon">
+                                <i class="fas fa-search-location"></i>
+                            </div>
+                            <div class="theft-title">
+                                <h2>Hệ Thống Truy Vết Phương Tiện Bị Đánh Cắp</h2>
+                                <p>Sử dụng AI và mạng lưới camera thông minh để truy tìm phương tiện mất cắp</p>
+                            </div>
+                        </div>
+                        <div class="theft-status">
+                            <span class="status-badge active">
+                                <i class="fas fa-broadcast-tower"></i>
+                                2,847 Camera Hoạt Động
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="theft-content">
+                        <!-- Input Form Section -->
+                        <div class="theft-input-section">
+                            <h3><i class="fas fa-clipboard-list"></i> Thông Tin Phương Tiện Cần Truy Vết</h3>
+                            <div class="input-grid">
+                                <div class="input-group">
+                                    <label>Biển số xe</label>
+                                    <input type="text" placeholder="VD: 30H-123.45" class="theft-input">
+                                    <small>Để trống nếu không biết</small>
+                                </div>
+                                <div class="input-group">
+                                    <label>Loại phương tiện</label>
+                                    <select class="theft-select">
+                                        <option>Chọn loại xe</option>
+                                        <option>Xe máy</option>
+                                        <option>Ô tô con</option>
+                                        <option>Ô tô tải</option>
+                                        <option>Xe khách</option>
+                                    </select>
+                                </div>
+                                <div class="input-group">
+                                    <label>Màu sắc chủ đạo</label>
+                                    <div class="color-picker">
+                                        <div class="color-option" data-color="white" style="background: #ffffff;"></div>
+                                        <div class="color-option" data-color="black" style="background: #000000;"></div>
+                                        <div class="color-option" data-color="red" style="background: #ff4444;"></div>
+                                        <div class="color-option" data-color="blue" style="background: #4444ff;"></div>
+                                        <div class="color-option" data-color="silver" style="background: #c0c0c0;"></div>
+                                        <div class="color-option" data-color="yellow" style="background: #ffff44;"></div>
+                                        <input type="text" placeholder="Hoặc nhập màu khác" class="color-input">
+                                    </div>
+                                </div>
+                                <div class="input-group">
+                                    <label>Hãng xe</label>
+                                    <input type="text" placeholder="VD: Honda, Yamaha, Toyota..." class="theft-input">
+                                </div>
+                                <div class="input-group">
+                                    <label>Đặc điểm nhận dạng</label>
+                                    <textarea placeholder="VD: Có sticker hình gấu, pô độ, đèn LED..." class="theft-textarea"></textarea>
+                                </div>
+                                <div class="input-group">
+                                    <label>Thời gian mất cắp</label>
+                                    <input type="datetime-local" class="theft-input">
+                                </div>
+                                <div class="input-group">
+                                    <label>Khu vực mất cắp</label>
+                                    <input type="text" placeholder="VD: Quận Hai Bà Trưng, Hà Nội" class="theft-input">
+                                </div>
+                                <div class="input-group upload-section">
+                                    <label>Hình ảnh tham khảo</label>
+                                    <div class="upload-area">
+                                        <i class="fas fa-cloud-upload-alt"></i>
+                                        <span>Kéo thả hoặc click để tải ảnh</span>
+                                        <input type="file" multiple accept="image/*" hidden>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="action-buttons">
+                                <button class="theft-btn primary">
+                                    <i class="fas fa-search"></i>
+                                    Bắt Đầu Truy Vết
+                                </button>
+                                <button class="theft-btn secondary">
+                                    <i class="fas fa-save"></i>
+                                    Lưu Thông Tin
+                                </button>
+                            </div>
+
+                            <!-- Additional Info Section -->
+                            <div class="additional-info-section">
+                                <div class="info-cards-grid">
+                                    <div class="info-card">
+                                        <div class="info-icon">
+                                            <i class="fas fa-shield-alt"></i>
+                                        </div>
+                                        <div class="info-content">
+                                            <h4>Bảo Mật Cao</h4>
+                                            <p>Thông tin được mã hóa và bảo vệ nghiêm ngặt</p>
+                                        </div>
+                                    </div>
+                                    <div class="info-card">
+                                        <div class="info-icon">
+                                            <i class="fas fa-clock"></i>
+                                        </div>
+                                        <div class="info-content">
+                                            <h4>Xử Lý Nhanh</h4>
+                                            <p>Kết quả trong vòng 2-5 phút</p>
+                                        </div>
+                                    </div>
+                                    <div class="info-card">
+                                        <div class="info-icon">
+                                            <i class="fas fa-eye"></i>
+                                        </div>
+                                        <div class="info-content">
+                                            <h4>Giám Sát 24/7</h4>
+                                            <p>Hệ thống hoạt động liên tục</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="tips-section">
+                                    <div class="tips-header">
+                                        <i class="fas fa-lightbulb"></i>
+                                        <h4>Mẹo để tăng hiệu quả truy vết</h4>
+                                    </div>
+                                    <div class="tips-list">
+                                        <div class="tip-item">
+                                            <span class="tip-number">1</span>
+                                            <span class="tip-text">Cung cấp nhiều hình ảnh từ các góc độ khác nhau</span>
+                                        </div>
+                                        <div class="tip-item">
+                                            <span class="tip-number">2</span>
+                                            <span class="tip-text">Mô tả chi tiết các đặc điểm nhận dạng độc đáo</span>
+                                        </div>
+                                        <div class="tip-item">
+                                            <span class="tip-number">3</span>
+                                            <span class="tip-text">Cung cấp thời gian và địa điểm chính xác nhất có thể</span>
+                                        </div>
+                                        <div class="tip-item">
+                                            <span class="tip-number">4</span>
+                                            <span class="tip-text">Liên hệ ngay khi phát hiện phương tiện nghi vấn</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="emergency-contact">
+                                    <div class="emergency-header">
+                                        <i class="fas fa-phone-alt"></i>
+                                        <h4>Liên Hệ Khẩn Cấp</h4>
+                                    </div>
+                                    <div class="contact-info">
+                                        <div class="contact-item">
+                                            <i class="fas fa-phone"></i>
+                                            <span>Hotline: 113 (24/7)</span>
+                                        </div>
+                                        <div class="contact-item">
+                                            <i class="fas fa-envelope"></i>
+                                            <span>Email: support@trafficai.vn</span>
+                                        </div>
+                                        <div class="contact-item">
+                                            <i class="fas fa-comment-dots"></i>
+                                            <span>Chat trực tuyến</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- AI Analysis Section -->
+                        <div class="theft-analysis-section">
+                            <h3><i class="fas fa-brain"></i> Phân Tích AI & Kết Quả Truy Vết</h3>
+                            
+                            <!-- Processing Status -->
+                            <div class="processing-status">
+                                <div class="status-item completed">
+                                    <div class="status-icon"><i class="fas fa-check"></i></div>
+                                    <span>Phân tích đặc điểm</span>
+                                </div>
+                                <div class="status-item processing">
+                                    <div class="status-icon"><i class="fas fa-spinner fa-spin"></i></div>
+                                    <span>Quét camera mạng lưới</span>
+                                </div>
+                                <div class="status-item pending">
+                                    <div class="status-icon"><i class="fas fa-clock"></i></div>
+                                    <span>So sánh AI</span>
+                                </div>
+                                <div class="status-item pending">
+                                    <div class="status-icon"><i class="fas fa-clock"></i></div>
+                                    <span>Xác định vị trí</span>
+                                </div>
+                            </div>
+
+                            <!-- Search Results -->
+                            <div class="search-results">
+                                <div class="results-header">
+                                    <h4>Kết Quả Truy Vết (3 kết quả phù hợp)</h4>
+                                    <div class="confidence-filter">
+                                        <label>Độ chính xác tối thiểu:</label>
+                                        <input type="range" min="50" max="100" value="85" class="confidence-slider">
+                                        <span class="confidence-value">85%</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="results-grid">
+                                    <div class="result-card high-confidence">
+                                        <div class="result-image">
+                                            <img src="https://images.unsplash.com/photo-1449824913935-59a10b8d2000?q=80&w=300&auto=format&fit=crop" alt="Detected vehicle">
+                                            <div class="confidence-badge">92% Khớp</div>
+                                        </div>
+                                        <div class="result-info">
+                                            <div class="location-info">
+                                                <i class="fas fa-map-marker-alt"></i>
+                                                <span>Đường Láng, Đống Đa</span>
+                                            </div>
+                                            <div class="time-info">
+                                                <i class="fas fa-clock"></i>
+                                                <span>28/07/2025 - 14:23</span>
+                                            </div>
+                                            <div class="camera-info">
+                                                <i class="fas fa-camera"></i>
+                                                <span>Camera GT-789</span>
+                                            </div>
+                                            <div class="features-matched">
+                                                <span class="feature-tag">Màu trắng</span>
+                                                <span class="feature-tag">Honda SH</span>
+                                                <span class="feature-tag">Sticker gấu</span>
+                                            </div>
+                                        </div>
+                                        <div class="result-actions">
+                                            <button class="action-btn mini">Xem chi tiết</button>
+                                            <button class="action-btn mini primary">Báo cáo</button>
+                                        </div>
+                                    </div>
+
+                                    <div class="result-card medium-confidence">
+                                        <div class="result-image">
+                                            <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?q=80&w=300&auto=format&fit=crop" alt="Detected vehicle">
+                                            <div class="confidence-badge">78% Khớp</div>
+                                        </div>
+                                        <div class="result-info">
+                                            <div class="location-info">
+                                                <i class="fas fa-map-marker-alt"></i>
+                                                <span>Phố Huế, Hai Bà Trưng</span>
+                                            </div>
+                                            <div class="time-info">
+                                                <i class="fas fa-clock"></i>
+                                                <span>28/07/2025 - 11:15</span>
+                                            </div>
+                                            <div class="camera-info">
+                                                <i class="fas fa-camera"></i>
+                                                <span>Camera GT-456</span>
+                                            </div>
+                                            <div class="features-matched">
+                                                <span class="feature-tag">Màu trắng</span>
+                                                <span class="feature-tag">Honda</span>
+                                            </div>
+                                        </div>
+                                        <div class="result-actions">
+                                            <button class="action-btn mini">Xem chi tiết</button>
+                                            <button class="action-btn mini primary">Báo cáo</button>
+                                        </div>
+                                    </div>
+
+                                    <div class="result-card low-confidence">
+                                        <div class="result-image">
+                                            <img src="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?q=80&w=300&auto=format&fit=crop" alt="Detected vehicle">
+                                            <div class="confidence-badge">65% Khớp</div>
+                                        </div>
+                                        <div class="result-info">
+                                            <div class="location-info">
+                                                <i class="fas fa-map-marker-alt"></i>
+                                                <span>Cầu Giấy, Cầu Giấy</span>
+                                            </div>
+                                            <div class="time-info">
+                                                <i class="fas fa-clock"></i>
+                                                <span>27/07/2025 - 16:45</span>
+                                            </div>
+                                            <div class="camera-info">
+                                                <i class="fas fa-camera"></i>
+                                                <span>Camera GT-123</span>
+                                            </div>
+                                            <div class="features-matched">
+                                                <span class="feature-tag">Xe máy</span>
+                                                <span class="feature-tag">Màu sáng</span>
+                                            </div>
+                                        </div>
+                                        <div class="result-actions">
+                                            <button class="action-btn mini">Xem chi tiết</button>
+                                            <button class="action-btn mini">Báo cáo</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Real-time Map -->
+                            <div class="tracking-map">
+                                <h4><i class="fas fa-route"></i> Lộ Trình Di Chuyển Dự Đoán</h4>
+                                <div class="map-container">
+                                    <img src="https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?q=80&w=800&auto=format&fit=crop" alt="Tracking Map">
+                                    <div class="tracking-point start" style="top: 60%; left: 30%;">
+                                        <div class="point-pulse"></div>
+                                        <div class="point-info">Điểm mất cắp</div>
+                                    </div>
+                                    <div class="tracking-point detected" style="top: 45%; left: 50%;">
+                                        <div class="point-pulse"></div>
+                                        <div class="point-info">Phát hiện lần 1</div>
+                                    </div>
+                                    <div class="tracking-point current" style="top: 35%; left: 70%;">
+                                        <div class="point-pulse"></div>
+                                        <div class="point-info">Vị trí hiện tại</div>
+                                    </div>
+                                    <svg class="tracking-path">
+                                        <path d="M 30% 60% Q 40% 52% 50% 45% T 70% 35%" stroke="#ff4444" stroke-width="3" fill="none" stroke-dasharray="5,5">
+                                            <animate attributeName="stroke-dashoffset" values="0;-10" dur="1s" repeatCount="indefinite"/>
+                                        </path>
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="statistics-container">
+                    <div class="stats-header">
+                        <h2>Thống Kê Nhanh</h2>
+                        <p>Dữ liệu vi phạm trong 30 ngày qua</p>
+                    </div>
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="card-icon" style="background: #e7f6ec; color: #4caf50;"><i class="fas fa-exclamation-triangle"></i></div>
+                            <div class="card-content">
+                                <span class="stat-number">1,280</span>
+                                <span class="stat-label">Tổng vi phạm</span>
+                            </div>
+                            <div class="stat-trend up"><i class="fas fa-arrow-up"></i> 5.2%</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="card-icon" style="background: #fff0e6; color: #ff9800;"><i class="fas fa-car-crash"></i></div>
+                            <div class="card-content">
+                                <span class="stat-number">42</span>
+                                <span class="stat-label">Tai nạn liên quan</span>
+                            </div>
+                            <div class="stat-trend down"><i class="fas fa-arrow-down"></i> 10.1%</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="card-icon" style="background: #e6f2ff; color: #2196f3;"><i class="fas fa-money-bill-wave"></i></div>
+                            <div class="card-content">
+                                <span class="stat-number">350M</span>
+                                <span class="stat-label">Tiền phạt (VND)</span>
+                            </div>
+                            <div class="stat-trend up"><i class="fas fa-arrow-up"></i> 8.0%</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="card-icon" style="background: #fde6e6; color: #f44336;"><i class="fas fa-traffic-light"></i></div>
+                            <div class="card-content">
+                                <span class="stat-number">512</span>
+                                <span class="stat-label">Vượt đèn đỏ</span>
+                            </div>
+                            <div class="stat-trend up"><i class="fas fa-arrow-up"></i> 15.4%</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="hotspot-map-container">
+                    <div class="map-header">
+                        <h2>Bản Đồ Điểm Nóng Vi Phạm</h2>
+                        <p>Các khu vực có mật độ vi phạm cao nhất tại Hà Nội</p>
+                    </div>
+                    <div class="map-image-wrapper">
+                        <img src="https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?q=80&w=2044&auto=format&fit=crop" alt="Violation Hotspot Map">
+                        <div class="hotspot" style="top: 45%; left: 50%;">
+                            <div class="hotspot-pulse"></div>
+                            <div class="hotspot-info">
+                                <strong>Ngã Tư Sở</strong>
+                                <span>127 vi phạm/tuần</span>
+                            </div>
+                        </div>
+                        <div class="hotspot" style="top: 60%; left: 65%;">
+                            <div class="hotspot-pulse"></div>
+                             <div class="hotspot-info">
+                                <strong>Hầm Kim Liên</strong>
+                                <span>98 vi phạm/tuần</span>
+                            </div>
+                        </div>
+                        <div class="hotspot" style="top: 30%; left: 35%;">
+                            <div class="hotspot-pulse"></div>
+                             <div class="hotspot-info">
+                                <strong>Cầu Giấy</strong>
+                                <span>85 vi phạm/tuần</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section about">
+                    <div class="logo">
+                        <i class="fas fa-robot"></i>
+                        <span>Bot Giao Thông</span>
+                    </div>
+                    <p>Trợ lý ảo thông minh cung cấp thông tin giao thông, phân tích và dự báo ùn tắc tại Việt Nam.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section links">
+                    <h4>Liên kết nhanh</h4>
+                    <ul>
+                        <li><a href="#">Dashboard</a></li>
+                        <li><a href="#">Bản đồ Live</a></li>
+                        <li><a href="#">Cảnh báo</a></li>
+                        <li><a href="#">Tra cứu vi phạm</a></li>
+                        <li><a href="#">Cài đặt</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section contact">
+                    <h4>Liên hệ</h4>
+                    <ul>
+                        <li><i class="fas fa-map-marker-alt"></i> 123 Đường ABC, Quận 1, TP.HCM</li>
+                        <li><i class="fas fa-phone"></i> (028) 3812 3456</li>
+                        <li><i class="fas fa-envelope"></i> support@botgiaothong.vn</li>
+                    </ul>
+                </div>
+                <div class="footer-section newsletter">
+                    <h4>Đăng ký nhận tin</h4>
+                    <p>Nhận thông tin giao thông quan trọng hàng tuần.</p>
+                    <div class="newsletter-form">
+                        <input type="email" placeholder="Nhập email của bạn...">
+                        <button><i class="fas fa-paper-plane"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Bot Giao Thông. All rights reserved. Designed with <i class="fas fa-heart"></i>.</p>
+            </div>
+        </div>
+    </footer>
+    
+    <script src="violation-script.js"></script>
+</body>
+</html>
