@@ -1,0 +1,6 @@
+train: D:\JUPYTER NOTEBOOK\Traffic Detection using YOLO\AIP490_Defense.v1i.yolov11\AIP490_Defense.v1i.yolov11\train\images
+val: D:\JUPYTER NOTEBOOK\Traffic Detection using YOLO\AIP490_Defense.v1i.yolov11\AIP490_Defense.v1i.yolov11\valid\images
+
+
+nc: 3
+names: ['Helmet', 'bike', 'Non_helmet']

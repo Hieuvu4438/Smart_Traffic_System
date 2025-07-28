@@ -1,0 +1,6 @@
+train: D:\JUPYTER NOTEBOOK\Traffic Detection using YOLO\vehicles.v2-release.yolov11\train\images
+val: D:\JUPYTER NOTEBOOK\Traffic Detection using YOLO\vehicles.v2-release.yolov11\valid\images
+test: D:\JUPYTER NOTEBOOK\Traffic Detection using YOLO\vehicles.v2-release.yolov11\test\images
+
+nc: 12
+names: ['big bus', 'big truck', 'bus-l-', 'bus-s-', 'car', 'mid truck', 'small bus', 'small truck', 'truck-l-', 'truck-m-', 'truck-s-', 'truck-xl-']
