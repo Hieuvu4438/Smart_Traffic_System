@@ -1,0 +1,13 @@
+train: ../train/images
+val: ../valid/images
+test: ../test/images
+
+nc: 5
+names: ['o to', 'xe bus', 'xe dap', 'xe may', 'xe tai']
+
+roboflow:
+  workspace: abcduahauhz
+  project: allcam1to6-a3dzp
+  version: 1
+  license: CC BY 4.0
+  url: https://universe.roboflow.com/abcduahauhz/allcam1to6-a3dzp/dataset/1

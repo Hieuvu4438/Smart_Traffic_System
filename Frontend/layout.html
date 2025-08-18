@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Traffic Monitoring System</title>
+    <link rel="stylesheet" href="traffic-dashboard.css">
+</head>
+<body>
+    <div class="traffic-dashboard-container">
+        <!-- Header với controls -->
+        <header class="dashboard-header">
+            <div class="system-status">
+                <span class="status-indicator" id="system-status">🟢 Online</span>
+                <span class="fps-counter" id="fps-display">FPS: 30</span>
+                <span class="camera-info" id="camera-info">Camera 1: 1920x1080</span>
+            </div>
+            
+            <div class="main-controls">
+                <button class="btn-primary" id="start-stop-btn">⏹️ Stop</button>
+                <button class="btn-secondary" id="record-btn">🔴 Record</button>
+                <button class="btn-secondary" id="export-btn">📊 Export Data</button>
+            </div>
+        </header>
+
+        <!-- Main content area -->
+        <main class="dashboard-main">
+            <!-- Video section - 60% width -->
+            <section class="video-section">
+                <div class="video-container">
+                    <canvas id="main-video-canvas" class="video-display"></canvas>
+                    
+                    <!-- Video overlay controls -->
+                    <div class="video-overlay">
+                        <div class="roi-tools">
+                            <button class="tool-btn active" id="view-mode">👁️ View</button>
+                            <button class="tool-btn" id="draw-zone-btn">📐 Draw Zone</button>
+                            <button class="tool-btn" id="speed-calibrate-btn">📏 Speed Calibration</button>
+                            <button class="tool-btn" id="clear-zones-btn">🗑️ Clear</button>
+                        </div>
+                        
+                        <!-- Zone info popup -->
+                        <div class="zone-info-popup" id="zone-popup" style="display: none;">
+                            <h4>Zone Configuration</h4>
+                            <label>Zone Name: <input type="text" id="zone-name" placeholder="Lane 1"></label>
+                            <label>Vehicle Types: 
+                                <select id="zone-vehicle-filter" multiple>
+                                    <option value="car">Cars</option>
+                                    <option value="bike">Motorcycles</option>
+                                    <option value="truck">Trucks</option>
+                                    <option value="bus">Buses</option>
+                                </select>
+                            </label>
+                            <button class="btn-save" id="save-zone">Save Zone</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Video controls -->
+                <div class="video-controls">
+                    <div class="detection-settings">
+                        <label>Detection Confidence: 
+                            <input type="range" id="confidence-slider" min="0.1" max="0.9" step="0.05" value="0.5">
+                            <span id="confidence-value">0.50</span>
+                        </label>
+                        
+                        <label>Speed Limit (km/h): 
+                            <input type="number" id="speed-limit" min="10" max="120" value="60">
+                        </label>
+                        
+                        <label>Model Selection:
+                            <select id="model-selector">
+                                <option value="yolo12s">YOLOv12s (Balanced)</option>
+                                <option value="yolo12n">YOLOv12n (Fast)</option>
+                                <option value="yolo10n">YOLOv10n (Speed Focus)</option>
+                            </select>
+                        </label>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Statistics sidebar - 40% width -->
+            <aside class="stats-sidebar">
+                <!-- Real-time counters -->
+                <div class="stats-section">
+                    <h3>📊 Live Statistics</h3>
+                    <div class="counter-grid">
+                        <div class="counter-card total-vehicles">
+                            <div class="counter-icon">🚗</div>
+                            <div class="counter-data">
+                                <span class="counter-number" id="total-count">0</span>
+                                <span class="counter-label">Total Vehicles</span>
+                            </div>
+                        </div>
+                        
+                        <div class="counter-card cars">
+                            <div class="counter-icon">🚙</div>
+                            <div class="counter-data">
+                                <span class="counter-number" id="car-count">0</span>
+                                <span class="counter-label">Cars</span>
+                            </div>
+                        </div>
+                        
+                        <div class="counter-card motorcycles">
+                            <div class="counter-icon">🏍️</div>
+                            <div class="counter-data">
+                                <span class="counter-number" id="bike-count">0</span>
+                                <span class="counter-label">Motorcycles</span>
+                            </div>
+                        </div>
+                        
+                        <div class="counter-card trucks">
+                            <div class="counter-icon">🚛</div>
+                            <div class="counter-data">
+                                <span class="counter-number" id="truck-count">0</span>
+                                <span class="counter-label">Trucks</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Zone breakdown -->
+                <div class="stats-section">
+                    <h3>🎯 Zone Analysis</h3>
+                    <div class="zone-stats-container" id="zone-stats">
+                        <!-- Dynamic zone cards will be inserted here -->
+                    </div>
+                </div>
+
+                <!-- Speed analytics -->
+                <div class="stats-section">
+                    <h3>🏎️ Speed Analytics</h3>
+                    <div class="speed-summary">
+                        <div class="speed-stat">
+                            <span class="speed-label">Average Speed:</span>
+                            <span class="speed-value" id="avg-speed">0 km/h</span>
+                        </div>
+                        <div class="speed-stat">
+                            <span class="speed-label">Max Speed:</span>
+                            <span class="speed-value" id="max-speed">0 km/h</span>
+                        </div>
+                        <div class="speed-stat">
+                            <span class="speed-label">Violations:</span>
+                            <span class="speed-value danger" id="violation-count">0</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Speed histogram -->
+                    <div class="speed-chart-container">
+                        <canvas id="speed-histogram" width="300" height="200"></canvas>
+                    </div>
+                </div>
+
+                <!-- Alerts section -->
+                <div class="stats-section">
+                    <h3>⚠️ Real-time Alerts</h3>
+                    <div class="alerts-container" id="alerts-container">
+                        <!-- Dynamic alerts will be inserted here -->
+                    </div>
+                </div>
+            </aside>
+        </main>
+
+        <!-- Footer với system info -->
+        <footer class="dashboard-footer">
+            <div class="system-info">
+                <span>GPU: <span id="gpu-usage">45%</span></span>
+                <span>Memory: <span id="memory-usage">2.1GB</span></span>
+                <span>Processing Time: <span id="processing-time">23ms</span></span>
+                <span>Objects Detected: <span id="objects-detected">15</span></span>
+            </div>
+        </footer>
+    </div>
+
+    <script src="traffic-dashboard.js"></script>
+</body>
+</html>

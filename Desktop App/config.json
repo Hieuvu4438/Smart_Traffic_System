@@ -1,0 +1,60 @@
+{
+  "app": {
+    "name": "Traffic Camera Monitor",
+    "version": "1.0.0",
+    "description": "Professional traffic monitoring application"
+  },
+  "cameras": {
+    "maxCameras": 6,
+    "defaultRefreshRate": 10,
+    "alertThreshold": 100,
+    "regions": [
+      { "id": "north", "name": "North Region", "color": "#00cc66" },
+      { "id": "central", "name": "Central Region", "color": "#ff9900" },
+      { "id": "south", "name": "South Region", "color": "#0066cc" }
+    ]
+  },
+  "vehicleTypes": [
+    { "id": "motorcycle", "name": "Motorcycle", "icon": "fa-motorcycle", "color": "#ff9900" },
+    { "id": "car", "name": "Car", "icon": "fa-car", "color": "#0066cc" },
+    { "id": "truck", "name": "Truck", "icon": "fa-truck", "color": "#003366" },
+    { "id": "bus", "name": "Bus", "icon": "fa-bus", "color": "#6600cc" },
+    { "id": "bicycle", "name": "Bicycle", "icon": "fa-bicycle", "color": "#00cc66" }
+  ],
+  "alerts": {
+    "types": [
+      { "id": "high", "name": "High Traffic", "color": "#ff3333", "threshold": 100 },
+      { "id": "medium", "name": "Medium Traffic", "color": "#ff9900", "threshold": 75 },
+      { "id": "low", "name": "Normal Traffic", "color": "#00cc66", "threshold": 50 }
+    ],
+    "soundEnabled": true,
+    "maxAlerts": 50,
+    "retentionHours": 24
+  },
+  "display": {
+    "themes": ["light", "dark"],
+    "defaultTheme": "light",
+    "refreshRates": [5, 10, 15, 30, 60],
+    "videoQualities": [
+      { "id": "low", "name": "Low (480p)", "width": 640, "height": 480 },
+      { "id": "medium", "name": "Medium (720p)", "width": 1280, "height": 720 },
+      { "id": "high", "name": "High (1080p)", "width": 1920, "height": 1080 }
+    ]
+  },
+  "export": {
+    "formats": ["csv", "json", "pdf"],
+    "maxRecords": 10000,
+    "dateFormats": ["YYYY-MM-DD", "DD/MM/YYYY", "MM/DD/YYYY"]
+  },
+  "api": {
+    "mockMode": true,
+    "endpoints": {
+      "cameras": "/api/cameras",
+      "metrics": "/api/metrics",
+      "history": "/api/history",
+      "alerts": "/api/alerts"
+    },
+    "timeout": 5000,
+    "retryAttempts": 3
+  }
+}

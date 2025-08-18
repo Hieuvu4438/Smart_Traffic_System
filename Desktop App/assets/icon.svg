@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="256" height="256" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#003366;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#0066cc;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="camera" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#ffffff;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#e0e0e0;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="256" height="256" rx="24" fill="url(#bg)"/>
+  
+  <!-- Camera Body -->
+  <rect x="48" y="96" width="160" height="80" rx="8" fill="url(#camera)" stroke="#003366" stroke-width="2"/>
+  
+  <!-- Camera Lens -->
+  <circle cx="128" cy="136" r="24" fill="#003366"/>
+  <circle cx="128" cy="136" r="16" fill="#000000"/>
+  <circle cx="128" cy="136" r="8" fill="#0066cc"/>
+  
+  <!-- Camera Stand -->
+  <rect x="120" y="176" width="16" height="32" fill="url(#camera)"/>
+  <rect x="104" y="208" width="48" height="8" rx="4" fill="url(#camera)"/>
+  
+  <!-- Traffic Elements -->
+  <rect x="64" y="48" width="32" height="16" rx="8" fill="#00cc66" opacity="0.8"/>
+  <rect x="160" y="48" width="32" height="16" rx="8" fill="#ff3333" opacity="0.8"/>
+  
+  <!-- Data Lines -->
+  <line x1="32" y1="224" x2="96" y2="224" stroke="#00cc66" stroke-width="4" opacity="0.7"/>
+  <line x1="160" y1="224" x2="224" y2="224" stroke="#ff9900" stroke-width="4" opacity="0.7"/>
+  
+  <!-- Connection Dots -->
+  <circle cx="32" cy="224" r="4" fill="#00cc66"/>
+  <circle cx="224" cy="224" r="4" fill="#ff9900"/>
+  
+  <!-- Signal Waves -->
+  <path d="M 128 96 Q 108 76 88 96" stroke="#ffffff" stroke-width="2" fill="none" opacity="0.6"/>
+  <path d="M 128 96 Q 148 76 168 96" stroke="#ffffff" stroke-width="2" fill="none" opacity="0.6"/>
+  <path d="M 128 88 Q 104 64 80 88" stroke="#ffffff" stroke-width="2" fill="none" opacity="0.4"/>
+  <path d="M 128 88 Q 152 64 176 88" stroke="#ffffff" stroke-width="2" fill="none" opacity="0.4"/>
+</svg>

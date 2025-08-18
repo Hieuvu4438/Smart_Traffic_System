@@ -1,0 +1,128 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Virtual Environment
+venv/
+.venv/
+env/
+.env
+
+# Node.js dependencies
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+package-lock.json
+
+# PyTorch/YOLO Model files (very large)
+*.pt
+*.pth
+*.onnx
+*.engine
+runs/
+weights/
+models/
+
+# Video files (too large for GitHub)
+*.mp4
+*.avi
+*.mov
+*.mkv
+*.wmv
+*.flv
+*.webm
+
+# Image datasets (can be large)
+*.jpg
+*.jpeg
+*.png
+*.gif
+*.bmp
+*.tiff
+*.tif
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+.spyderproject
+.spyproject
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+desktop.ini
+
+# Logs
+*.log
+logs/
+log/
+
+# Temporary files
+*.tmp
+*.temp
+*.bak
+*.backup
+
+# Results and outputs
+results/
+output/
+outputs/
+result_*.txt
+predictions/
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# Cache
+.cache/
+*.cache
+
+# Compiled files
+*.pyc
+*.pyo
+
+# Documentation builds
+docs/_build/
+site/
+
+# Configuration files with sensitive data
+config.ini
+settings.ini
+secrets.yaml
+.secrets
+
+# Test coverage
+htmlcov/
+.coverage
+.coverage.*
+coverage.xml
+*.cover
+.hypothesis/
+.pytest_cache/

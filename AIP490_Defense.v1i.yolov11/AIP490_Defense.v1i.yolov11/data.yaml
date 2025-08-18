@@ -1,0 +1,13 @@
+train: ../train/images
+val: ../valid/images
+test: ../test/images
+
+nc: 3
+names: ['Helmet', 'bike', 'Non_helmet']
+
+roboflow:
+  workspace: abcduahauhz
+  project: aip490_defense-mhhyh
+  version: 1
+  license: CC BY 4.0
+  url: https://universe.roboflow.com/abcduahauhz/aip490_defense-mhhyh/dataset/1

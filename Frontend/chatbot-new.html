@@ -1,0 +1,831 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Giao Thông</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="chatbot-style-new.css">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header-left">
+                <div class="logo">
+                    <i class="fas fa-robot"></i>
+                    <span class="gradient-text">Bot Giao Thông</span>
+                </div>
+                <nav class="nav-menu">
+                    <a href="#" class="nav-link active"><span><i class="fas fa-chart-line"></i> Dashboard</span></a>
+                    <a href="#" class="nav-link"><span><i class="fas fa-map-marked-alt"></i> Bản đồ</span></a>
+                    <a href="#" class="nav-link"><span><i class="fas fa-exclamation-triangle"></i> Cảnh báo</span></a>
+                    <a href="#" class="nav-link"><span><i class="fas fa-cog"></i> Cài đặt</span></a>
+                </nav>
+            </div>
+            <div class="header-right">
+                <div class="notification-bell">
+                    <i class="fas fa-bell"></i>
+                    <div class="notification-badge">3</div>
+                </div>
+                <button class="login-btn">
+                    <i class="fas fa-user-circle"></i>
+                    <span>Đăng nhập</span>
+                </button>
+                <div class="user-avatar">
+                    <img src="picture-icon-no-image-symbol-260nw-1572613234.webp" alt="User Avatar">
+                    <div class="online-status"></div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <section class="hero-section">
+            <div class="container">
+                <div class="hero-content">
+                    <div class="hero-badge">
+                        <i class="fas fa-star"></i>
+                        <span>Trợ lý AI Thông Minh</span>
+                    </div>
+                    <h1 class="hero-title">
+                        <span class="gradient-text">Hỏi Đáp & Phân Tích</span>
+                        <span>Giao Thông Việt Nam</span>
+                    </h1>
+                    <p class="hero-description">
+                        Trải nghiệm trợ lý ảo thế hệ mới, cung cấp thông tin giao thông tức thì, phân tích dữ liệu và đưa ra dự báo chính xác.
+                    </p>
+                    <div class="hero-stats">
+                        <div class="stat-item">
+                            <div class="stat-icon"><i class="fas fa-map-marker-alt"></i></div>
+                            <div>
+                                <div class="stat-number" data-target="63">0</div>
+                                <div class="stat-label">Tỉnh/Thành</div>
+                            </div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-icon"><i class="fas fa-camera"></i></div>
+                            <div>
+                                <div class="stat-number" data-target="1500" data-suffix="+">0</div>
+                                <div class="stat-label">Camera Giám Sát</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="hero-actions">
+                        <button class="btn-primary"><i class="fas fa-rocket"></i> Bắt đầu ngay</button>
+                        <button class="btn-secondary"><i class="fas fa-play-circle"></i> Xem Demo</button>
+                    </div>
+                </div>
+                <div class="hero-visual">
+                    <div class="chatbot-preview glow-effect">
+                        <div class="chat-window">
+                            <div class="chat-header">
+                                <div class="chat-avatar"><i class="fas fa-robot"></i></div>
+                                <div class="chat-info">
+                                    <div class="chat-name">TrafficBot</div>
+                                    <div class="chat-status"><i class="fas fa-circle"></i> Online</div>
+                                </div>
+                                <div class="chat-actions">
+                                    <button><i class="fas fa-phone"></i></button>
+                                    <button><i class="fas fa-video"></i></button>
+                                    <button><i class="fas fa-times"></i></button>
+                                </div>
+                            </div>
+                            <div class="chat-messages">
+                                <div class="message bot-message">
+                                    <div class="message-avatar"><i class="fas fa-robot"></i></div>
+                                    <div class="message-content">
+                                        <p>Xin chào! Tôi có thể giúp gì cho bạn về tình hình giao thông hôm nay?</p>
+                                        <div class="message-time">10:30 AM</div>
+                                    </div>
+                                </div>
+                                <div class="message user-message">
+                                    <div class="message-content">
+                                        <p>Tình hình giao thông ở cầu Sài Gòn hiện tại thế nào?</p>
+                                        <div class="message-time">10:31 AM</div>
+                                    </div>
+                                </div>
+                                <div class="message bot-message">
+                                    <div class="message-avatar"><i class="fas fa-robot"></i></div>
+                                    <div class="message-content">
+                                        <p>Đang phân tích... <span class="typing-indicator"><span></span><span></span><span></span></span></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="chat-input">
+                                <button class="attachment-btn"><i class="fas fa-paperclip"></i></button>
+                                <input type="text" placeholder="Nhập câu hỏi của bạn...">
+                                <button class="send-btn"><i class="fas fa-paper-plane"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="violation-section">
+            <aside class="sidebar">
+                <nav class="sidebar-nav">
+                    <div class="nav-header">
+                        <h3><i class="fas fa-compass"></i> Điều Hướng</h3>
+                    </div>
+                    <a href="#" class="nav-item active">
+                        <i class="fas fa-tachometer-alt"></i>
+                        <span>Tổng Quan</span>
+                        <div class="nav-indicator"></div>
+                    </a>
+                    <a href="#" class="nav-item">
+                        <i class="fas fa-search"></i>
+                        <span>Tra Cứu Vi Phạm</span>
+                    </a>
+                    <div class="nav-item dropdown">
+                        <i class="fas fa-car-crash"></i>
+                        <span>Phân Tích Tai Nạn</span>
+                        <i class="fas fa-chevron-down dropdown-icon"></i>
+                    </div>
+                    <div class="dropdown-content">
+                        <a href="#" class="dropdown-item">Theo Thời Gian</a>
+                        <a href="#" class="dropdown-item">Theo Khu Vực</a>
+                        <a href="#" class="dropdown-item">Theo Nguyên Nhân</a>
+                    </div>
+                    <a href="#" class="nav-item">
+                        <i class="fas fa-tools"></i>
+                        <span>Tiện Ích</span>
+                    </a>
+                </nav>
+                <div class="sidebar-decorations">
+                    <div class="performance-metrics">
+                        <h4><i class="fas fa-chart-pie"></i> Hiệu Suất Hệ Thống</h4>
+                        <div class="metric-item">
+                            <div class="metric-label"><span>Độ chính xác AI</span><span class="metric-value"><span class="value" data-target="98" data-suffix="%">0%</span></span></div>
+                            <div class="progress-bar"><div class="progress" style="width: 98%;"></div></div>
+                        </div>
+                        <div class="metric-item">
+                            <div class="metric-label"><span>Tải hệ thống</span><span class="metric-value"><span class="value" data-target="45" data-suffix="%">0%</span></span></div>
+                            <div class="progress-bar"><div class="progress" style="width: 45%; background: var(--color-accent-warning);"></div></div>
+                        </div>
+                    </div>
+                    <div class="achievement-section">
+                        <h4><i class="fas fa-trophy"></i> Thành Tích</h4>
+                        <div class="decoration-card premium">
+                            <div class="decoration-icon"><i class="fas fa-shield-alt"></i></div>
+                            <div class="decoration-text">
+                                <h5>Hệ thống An Toàn</h5>
+                                <div class="feature-tags">
+                                    <span class="tag">Tin cậy</span>
+                                    <span class="tag">Bảo mật</span>
+                                </div>
+                            </div>
+                            <div class="decoration-status"><i class="fas fa-check-circle"></i></div>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+            <div class="content-area">
+                <div class="page-header enhanced">
+                    <div class="header-content">
+                        <div class="header-icon"><i class="fas fa-binoculars"></i></div>
+                        <div class="header-text">
+                            <h1>Giám Sát & Phân Tích</h1>
+                            <p class="header-subtitle">Dữ liệu trực quan về tình hình giao thông và các điểm nóng vi phạm.</p>
+                        </div>
+                        <div class="header-stats">
+                            <div class="header-stat"><i class="fas fa-video"></i> 1,500+ Cameras</div>
+                            <div class="header-stat"><i class="fas fa-map-marked-alt"></i> 63 Tỉnh/Thành</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="description enhanced">
+                    <div class="description-content">
+                        <div class="description-icon"><i class="fas fa-info-circle"></i></div>
+                        <p>Hệ thống sử dụng các mô hình AI tiên tiến để phân tích hình ảnh từ camera, nhận diện các hành vi vi phạm và cung cấp dữ liệu thống kê chi tiết.</p>
+                    </div>
+                    <div class="technology-badges">
+                        <span class="tech-badge"><i class="fab fa-python"></i> Python</span>
+                        <span class="tech-badge"><i class="fas fa-brain"></i> TensorFlow</span>
+                        <span class="tech-badge"><i class="fas fa-database"></i> SQL</span>
+                        <span class="tech-badge"><i class="fab fa-js-square"></i> JavaScript</span>
+                    </div>
+                </div>
+
+                <div class="feature-cards enhanced">
+                    <div class="feature-card main-featured premium">
+                        <div class="card-image-section">
+                            <img src="https://toptphochiminhaz.com/wp-content/uploads/2025/01/cau-vuot-nga-tu-thu-duc_4.jpg" alt="Traffic Image">
+                            <div class="image-overlay enhanced">
+                                <div class="overlay-badge premium"><i class="fas fa-star"></i> Điểm Nóng</div>
+                                <div class="overlay-stats">
+                                    <div class="stat"><i class="fas fa-exclamation-triangle"></i> 127 Vi phạm/giờ</div>
+                                    <div class="stat"><i class="fas fa-car"></i> Mật độ cao</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-info-section enhanced">
+                            <div>
+                                <div class="category-badge premium"><i class="fas fa-traffic-light"></i> Vượt Đèn Đỏ</div>
+                                <h3>Phân Tích Điểm Nóng: Ngã Tư Thủ Đức</h3>
+                                <div class="location-tag enhanced"><i class="fas fa-map-marker-alt"></i> TP. Hồ Chí Minh</div>
+                                <p>Khu vực giao cắt phức tạp với lưu lượng xe lớn, thường xuyên ghi nhận các trường hợp vượt đèn đỏ và sai làn, đặc biệt vào giờ cao điểm.</p>
+                                <div class="feature-highlights">
+                                    <div class="highlight"><i class="fas fa-check-circle"></i> Nhận diện biển số</div>
+                                    <div class="highlight"><i class="fas fa-check-circle"></i> Phân loại phương tiện</div>
+                                    <div class="highlight"><i class="fas fa-check-circle"></i> Đo lường tốc độ</div>
+                                    <div class="highlight"><i class="fas fa-check-circle"></i> Gửi cảnh báo tự động</div>
+                                </div>
+                            </div>
+                            <div class="card-footer enhanced">
+                                <div class="author-info">
+                                    <div class="author-avatar premium"><i class="fas fa-user-shield"></i></div>
+                                    <div>
+                                        <div class="author-name">Hệ Thống Giám Sát Tự Động</div>
+                                        <div class="author-position">Cập nhật lần cuối: <span class="last-updated">vài giây trước</span></div>
+                                    </div>
+                                </div>
+                                <div class="card-actions">
+                                    <button class="btn-primary"><i class="fas fa-video"></i> Xem Live</button>
+                                    <button class="btn-secondary"><i class="fas fa-chart-bar"></i> Chi Tiết</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <section class="route-planning-section">
+                    <div class="section-header">
+                        <div class="header-icon"><i class="fas fa-route"></i></div>
+                        <div class="header-text">
+                            <h2>Tìm & Dự Đoán Lộ Trình</h2>
+                            <p>Lên kế hoạch di chuyển thông minh với dữ liệu thời gian thực và dự báo AI.</p>
+                        </div>
+                    </div>
+
+                    <div class="route-planner-grid">
+                        <div class="route-inputs-panel">
+                            <div class="panel-header">
+                                <div class="header-icon"><i class="fas fa-map-signs"></i></div>
+                                <h3>Lập Kế Hoạch Lộ Trình</h3>
+                            </div>
+                            
+                            <div class="input-section">
+                                <div class="input-group">
+                                    <label for="start-point">
+                                        <i class="fas fa-play-circle"></i>
+                                        Điểm đi
+                                    </label>
+                                    <div class="input-wrapper">
+                                        <input type="text" id="start-point" placeholder="Sân bay Tân Sơn Nhất, TP.HCM">
+                                        <button class="mic-btn" aria-label="Tìm kiếm bằng giọng nói">
+                                            <i class="fas fa-microphone"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                
+                                <div class="route-divider">
+                                    <div class="divider-line"></div>
+                                    <div class="swap-btn">
+                                        <i class="fas fa-exchange-alt"></i>
+                                    </div>
+                                    <div class="divider-line"></div>
+                                </div>
+                                
+                                <div class="input-group">
+                                    <label for="end-point">
+                                        <i class="fas fa-flag-checkered"></i>
+                                        Điểm đến
+                                    </label>
+                                    <div class="input-wrapper">
+                                        <input type="text" id="end-point" placeholder="Chợ Bến Thành, Quận 1">
+                                        <button class="mic-btn" aria-label="Tìm kiếm bằng giọng nói">
+                                            <i class="fas fa-microphone"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        
+                            <div class="transport-section">
+                                <h4>Chọn phương tiện di chuyển</h4>
+                                <div class="transport-options">
+                                    <button class="transport-btn active" data-type="car">
+                                        <div class="transport-icon">
+                                            <i class="fas fa-car"></i>
+                                        </div>
+                                        <span>Ô tô</span>
+                                        <small>Nhanh chóng</small>
+                                    </button>
+                                    <button class="transport-btn" data-type="bike">
+                                        <div class="transport-icon">
+                                            <i class="fas fa-motorcycle"></i>
+                                        </div>
+                                        <span>Xe máy</span>
+                                        <small>Linh hoạt</small>
+                                    </button>
+                                    <button class="transport-btn" data-type="bus">
+                                        <div class="transport-icon">
+                                            <i class="fas fa-bus"></i>
+                                        </div>
+                                        <span>Xe bus</span>
+                                        <small>Tiết kiệm</small>
+                                    </button>
+                                    <button class="transport-btn" data-type="walk">
+                                        <div class="transport-icon">
+                                            <i class="fas fa-walking"></i>
+                                        </div>
+                                        <span>Đi bộ</span>
+                                        <small>Tự nhiên</small>
+                                    </button>
+                                </div>
+                            </div>
+                        
+                            <div class="action-section">
+                                <button class="find-route-btn">
+                                    <i class="fas fa-search-location"></i>
+                                    <span>Tìm Lộ Trình Tốt Nhất</span>
+                                    <div class="btn-shine"></div>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="route-map-panel">
+                            <div class="map-section">
+                                <div class="map-placeholder">
+                                    <img src="https://bizweb.dktcdn.net/100/235/532/articles/ho-chi-minh-ho-tro-cap-nhat-google-maps-ve-dich-covid-19-1.jpg?v=1623947998367" alt="Traffic map with routes" onerror="this.src='https://via.placeholder.com/800x400/2563eb/ffffff?text=Interactive+Map'">
+                                    <div class="map-overlay-controls">
+                                        <button class="map-control-btn">
+                                            <i class="fas fa-expand"></i>
+                                        </button>
+                                        <button class="map-control-btn">
+                                            <i class="fas fa-layer-group"></i>
+                                        </button>
+                                    </div>
+                                    <div class="map-overlay-text">Bản đồ tương tác sẽ hiển thị ở đây</div>
+                                </div>
+                            </div>
+                            
+                            <div class="map-info-section">
+                                <div class="info-header">
+                                    <div class="info-icon">
+                                        <i class="fas fa-list-ol"></i>
+                                    </div>
+                                    <h4>Chỉ Dẫn Từng Bước</h4>
+                                    <div class="total-distance">12.5 km • 25 phút</div>
+                                </div>
+                                
+                                <div class="route-steps">
+                                    <div class="step-item">
+                                        <div class="step-number">1</div>
+                                        <div class="step-icon">
+                                            <i class="fas fa-location-arrow"></i>
+                                        </div>
+                                        <div class="step-content">
+                                            <div class="step-instruction">Khởi hành từ <strong>Sân bay Tân Sơn Nhất</strong></div>
+                                            <div class="step-details">Hướng Đông Nam trên Đường Trường Sơn</div>
+                                        </div>
+                                        <div class="step-distance">0.5 km</div>
+                                    </div>
+                                    
+                                    <div class="step-item">
+                                        <div class="step-number">2</div>
+                                        <div class="step-icon">
+                                            <i class="fas fa-arrow-right"></i>
+                                        </div>
+                                        <div class="step-content">
+                                            <div class="step-instruction">Rẽ phải vào <strong>Đường Võ Văn Kiệt</strong></div>
+                                            <div class="step-details">Đi thẳng qua 3 ngã tư có đèn tín hiệu</div>
+                                        </div>
+                                        <div class="step-distance">8.2 km</div>
+                                    </div>
+                                    
+                                    <div class="step-item">
+                                        <div class="step-number">3</div>
+                                        <div class="step-icon">
+                                            <i class="fas fa-bridge"></i>
+                                        </div>
+                                        <div class="step-content">
+                                            <div class="step-instruction">Đi qua <strong>Cầu Sài Gòn</strong></div>
+                                            <div class="step-details">Lưu ý: Có thể ùn tắc vào giờ cao điểm</div>
+                                        </div>
+                                        <div class="step-distance">2.1 km</div>
+                                    </div>
+                                    
+                                    <div class="step-item">
+                                        <div class="step-number">4</div>
+                                        <div class="step-icon">
+                                            <i class="fas fa-flag-checkered"></i>
+                                        </div>
+                                        <div class="step-content">
+                                            <div class="step-instruction">Đến <strong>Chợ Bến Thành</strong></div>
+                                            <div class="step-details">Điểm đến sẽ ở bên phải</div>
+                                        </div>
+                                        <div class="step-distance">1.7 km</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="traffic-assessment-panel">
+                            <h4><i class="fas fa-chart-line"></i> Đánh giá chung</h4>
+                            <div class="assessment-grid">
+                                <div class="assessment-item">
+                                    <div class="assessment-icon" style="color: #f59e0b;"><i class="fas fa-car-side"></i></div>
+                                    <div class="assessment-label">Mật độ</div>
+                                    <div class="assessment-value">Trung bình</div>
+                                </div>
+                                <div class="assessment-item">
+                                    <div class="assessment-icon" style="color: #10b981;"><i class="fas fa-tachometer-alt"></i></div>
+                                    <div class="assessment-label">Tốc độ TB</div>
+                                    <div class="assessment-value">35 km/h</div>
+                                </div>
+                                <div class="assessment-item">
+                                    <div class="assessment-icon" style="color: #ef4444;"><i class="fas fa-exclamation-triangle"></i></div>
+                                    <div class="assessment-label">Cảnh báo</div>
+                                    <div class="assessment-value">2 điểm nóng</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="route-results-panel">
+                            <!-- All Routes List -->
+                            <div class="all-routes-section">
+                                <h4>Tất cả tuyến đường (5)</h4>
+                                <div class="route-list detailed">
+                                    <div class="route-card detailed-card">
+                                        <div class="route-card-main">
+                                            <div class="route-icon"><i class="fas fa-road"></i></div>
+                                            <div class="route-info">
+                                                <h5>Qua Đường Vành Đai 2</h5>
+                                                <p>Tuyến đường chính, mật độ ổn định.</p>
+                                            </div>
+                                            <div class="route-stats">
+                                                <div class="route-time">25 phút</div>
+                                                <div class="route-distance">12.5 km</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="route-card detailed-card">
+                                        <div class="route-card-main">
+                                            <div class="route-icon"><i class="fas fa-motorway"></i></div>
+                                            <div class="route-info">
+                                                <h5>Qua Cao tốc Long Thành - Dầu Giây</h5>
+                                                <p>Tốc độ cao, có thể có thu phí.</p>
+                                            </div>
+                                            <div class="route-stats">
+                                                <div class="route-time">22 phút</div>
+                                                <div class="route-distance">14.2 km</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="route-card detailed-card">
+                                        <div class="route-card-main">
+                                            <div class="route-icon"><i class="fas fa-city"></i></div>
+                                            <div class="route-info">
+                                                <h5>Qua trung tâm thành phố</h5>
+                                                <p>Nhiều điểm dừng, mật độ cao vào giờ cao điểm.</p>
+                                            </div>
+                                            <div class="route-stats">
+                                                <div class="route-time">35 phút</div>
+                                                <div class="route-distance">11.8 km</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Suggested Routes -->
+                            <div class="suggested-routes-section">
+                                <h4>Tuyến đường đề xuất</h4>
+                                <div class="route-list">
+                                    <div class="route-card active">
+                                        <div class="route-card-header">
+                                            <h5>Tuyến tối ưu nhất</h5>
+                                            <span class="badge optimal">Tối ưu</span>
+                                        </div>
+                                        <div class="route-card-body">
+                                            <div class="route-time">25 phút</div>
+                                            <div class="route-distance">12.5 km</div>
+                                        </div>
+                                        <p class="route-description">Kết hợp tốt nhất giữa thời gian và quãng đường.</p>
+                                    </div>
+                                    <div class="route-card">
+                                        <div class="route-card-header">
+                                            <h5>Tuyến nhanh nhất</h5>
+                                            <span class="badge fastest">Nhanh nhất</span>
+                                        </div>
+                                        <div class="route-card-body">
+                                            <div class="route-time">22 phút</div>
+                                            <div class="route-distance">14.2 km</div>
+                                        </div>
+                                        <p class="route-description">Di chuyển nhanh hơn qua đường cao tốc.</p>
+                                    </div>
+                                    <div class="route-card">
+                                        <div class="route-card-header">
+                                            <h5>Tuyến ngắn nhất</h5>
+                                            <span class="badge shortest">Ngắn nhất</span>
+                                        </div>
+                                        <div class="route-card-body">
+                                            <div class="route-time">30 phút</div>
+                                            <div class="route-distance">11.8 km</div>
+                                        </div>
+                                        <p class="route-description">Quãng đường ngắn nhất, có thể có mật độ giao thông cao.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Traffic Monitoring Section -->
+                <section class="traffic-monitoring-section">
+                    <div class="section-header">
+                        <div class="header-icon"><i class="fas fa-video"></i></div>
+                        <div class="header-text">
+                            <h2>Giám Sát Giao Thông Trực Tiếp</h2>
+                            <p>Thông tin tai nạn và dự đoán ùn tắc cập nhật liên tục từ hệ thống AI.</p>
+                        </div>
+                        <div class="live-indicator">
+                            <i class="fas fa-circle"></i> 
+                            <span>Live</span>
+                        </div>
+                    </div>
+
+                    <div class="monitoring-grid">
+                        <!-- Live Accident Hotspots -->
+                        <div class="monitoring-panel accidents-panel">
+                            <div class="panel-title">
+                                <div class="title-icon">
+                                    <i class="fas fa-car-crash"></i>
+                                </div>
+                                <h3>Điểm Nóng Tai Nạn</h3>
+                                <span class="status-badge critical">3 Active</span>
+                            </div>
+                            
+                            <div class="content-grid">
+                                <div class="incident-card featured">
+                                    <div class="incident-image">
+                                        <img src="https://i.ex-cdn.com/taichinhdoanhnghiep.net.vn/files/content/2025/03/22/5tet-11-750x375-2121-qkrm-0836.jpeg" alt="Highway accident">
+                                        <div class="severity-badge critical">Nghiêm Trọng</div>
+                                        <div class="time-stamp">
+                                            <i class="fas fa-clock"></i>
+                                            <span>15:45</span>
+                                        </div>
+                                    </div>
+                                    <div class="incident-info">
+                                        <h4>Cao tốc Pháp Vân - Cầu Giẽ</h4>
+                                        <div class="location">
+                                            <i class="fas fa-map-marker-alt"></i>
+                                            <span>Km 188, hướng Hà Nội - Ninh Bình</span>
+                                        </div>
+                                        <div class="impact-stats">
+                                            <div class="stat">
+                                                <i class="fas fa-car"></i>
+                                                <span>3 xe</span>
+                                            </div>
+                                            <div class="stat">
+                                                <i class="fas fa-users"></i>
+                                                <span>5 người</span>
+                                            </div>
+                                            <div class="stat">
+                                                <i class="fas fa-road"></i>
+                                                <span>2 làn đóng</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="incidents-list">
+                                    <div class="incident-item">
+                                        <div class="incident-thumb">
+                                            <img src="https://www.officesaigon.vn/data/upload/nga-tu-hang-xanh.jpg" alt="City traffic accident">
+                                            <div class="severity-dot warning"></div>
+                                        </div>
+                                        <div class="incident-details">
+                                            <h5>Ngã tư Sở, Hà Nội</h5>
+                                            <p>Va chạm nhẹ, giao thông chậm</p>
+                                            <span class="time">16:10 - Đã xử lý</span>
+                                        </div>
+                                        <div class="status-icon resolved">
+                                            <i class="fas fa-check-circle"></i>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="incident-item">
+                                        <div class="incident-thumb">
+                                            <img src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?q=80&w=2070&auto=format&fit=crop" alt="Construction zone">
+                                            <div class="severity-dot moderate"></div>
+                                        </div>
+                                        <div class="incident-details">
+                                            <h5>Đường Nguyễn Hữu Cảnh</h5>
+                                            <p>Công trình thi công, làn thu hẹp</p>
+                                            <span class="time">14:30 - Đang xử lý</span>
+                                        </div>
+                                        <div class="status-icon ongoing">
+                                            <i class="fas fa-exclamation-triangle"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="panel-actions">
+                                <button class="action-btn primary">
+                                    <i class="fas fa-eye"></i>
+                                    Xem tất cả
+                                </button>
+                                <button class="action-btn secondary">
+                                    <i class="fas fa-bell"></i>
+                                    Cài đặt cảnh báo
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Traffic Prediction Panel -->
+                        <div class="monitoring-panel prediction-panel">
+                            <div class="panel-title">
+                                <div class="title-icon">
+                                    <i class="fas fa-brain"></i>
+                                </div>
+                                <h3>Dự Đoán Ùn Tắc AI</h3>
+                                <span class="status-badge warning">5 Alerts</span>
+                            </div>
+                            
+                            <div class="content-grid">
+                                <!-- <div class="prediction-card featured">
+                                    <div class="prediction-image">
+                                        <img src="https://images.unsplash.com/photo-1449824913935-59a10b8d2000?q=80&w=2070&auto=format&fit=crop" alt="Traffic congestion">
+                                        <div class="congestion-level critical">
+                                            <div class="level-bar">
+                                                <div class="level-fill" style="width: 85%"></div>
+                                            </div>
+                                            <span>85% Ùn tắc</span>
+                                        </div>
+                                        <div class="ai-confidence">
+                                            <i class="fas fa-robot"></i>
+                                            <span>97% tin cậy</span>
+                                        </div>
+                                    </div>
+                                    <div class="prediction-info">
+                                        <h4>Ngã tư Hàng Xanh</h4>
+                                        <div class="prediction-time">
+                                            <i class="fas fa-clock"></i>
+                                            <span>Dự kiến: 17:30 - 18:45</span>
+                                        </div>
+                                        <div class="prediction-stats">
+                                            <div class="stat">
+                                                <i class="fas fa-hourglass-half"></i>
+                                                <span>+25 phút</span>
+                                            </div>
+                                            <div class="stat">
+                                                <i class="fas fa-route"></i>
+                                                <span>3 tuyến ảnh hưởng</span>
+                                            </div>
+                                            <div class="stat">
+                                                <i class="fas fa-car-side"></i>
+                                                <span>Mật độ cao</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div> -->
+                                <div class="incident-card featured">
+                                    <div class="incident-image">
+                                        <img src="https://images.unsplash.com/photo-1449824913935-59a10b8d2000?q=80&w=2070&auto=format&fit=crop" alt="Highway accident">
+                                        
+                                        
+                                        <div class="congestion-level critical">
+                                            <div class="level-bar">
+                                                <div class="level-fill" style="width: 85%"></div>
+                                            </div>
+                                            <span>85% Ùn tắc</span>
+                                        </div>
+                                        <div class="ai-confidence">
+                                            <i class="fas fa-robot"></i>
+                                            <span>97% tin cậy</span>
+                                        </div>
+                                    </div>
+                                    <div class="incident-info">
+                                        <h4>Ngã tư hàng xanh</h4>
+                                        <div class="prediction-time">
+                                            <i class="fas fa-clock"></i>
+                                            <span>Dự kiến: 17:30 - 18:45</span>
+                                        </div>
+                                        <div class="prediction-stats">
+                                            <div class="stat">
+                                                <i class="fas fa-hourglass-half"></i>
+                                                <span>+25 phút</span>
+                                            </div>
+                                            <div class="stat">
+                                                <i class="fas fa-route"></i>
+                                                <span>3 tuyến ảnh hưởng</span>
+                                            </div>
+                                            <div class="stat">
+                                                <i class="fas fa-car-side"></i>
+                                                <span>Mật độ cao</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="predictions-list">
+                                    <div class="prediction-item">
+                                        <div class="prediction-thumb">
+                                            <img src="https://images.unsplash.com/photo-1570129477492-45c003edd2be?q=80&w=2070&auto=format&fit=crop" alt="Rush hour traffic">
+                                            <div class="congestion-dot warning"></div>
+                                        </div>
+                                        <div class="prediction-details">
+                                            <h5>Cầu Sài Gòn</h5>
+                                            <p>Ùn tắc vừa phải, +15 phút</p>
+                                            <span class="confidence">AI: 92% chính xác</span>
+                                        </div>
+                                        <div class="trend-icon up">
+                                            <i class="fas fa-arrow-up"></i>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="prediction-item">
+                                        <div class="prediction-thumb">
+                                            <img src="https://images.unsplash.com/photo-1502920917128-1aa500764cbd?q=80&w=2070&auto=format&fit=crop" alt="Highway traffic">
+                                            <div class="congestion-dot moderate"></div>
+                                        </div>
+                                        <div class="prediction-details">
+                                            <h5>Xa lộ Hà Nội</h5>
+                                            <p>Giao thông thông thoáng</p>
+                                            <span class="confidence">AI: 88% chính xác</span>
+                                        </div>
+                                        <div class="trend-icon down">
+                                            <i class="fas fa-arrow-down"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="panel-actions">
+                                <button class="action-btn primary">
+                                    <i class="fas fa-chart-line"></i>
+                                    Xem dự báo chi tiết
+                                </button>
+                                <button class="action-btn secondary">
+                                    <i class="fas fa-route"></i>
+                                    Tìm đường tránh
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                </section>
+            </div>
+        </div>
+        
+    </main>
+
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section about">
+                    <div class="logo">
+                        <i class="fas fa-robot"></i>
+                        <span>Bot Giao Thông</span>
+                    </div>
+                    <p>Trợ lý ảo thông minh cung cấp thông tin giao thông, phân tích và dự báo ùn tắc tại Việt Nam.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section links">
+                    <h4>Liên kết nhanh</h4>
+                    <ul>
+                        <li><a href="#">Dashboard</a></li>
+                        <li><a href="#">Bản đồ Live</a></li>
+                        <li><a href="#">Cảnh báo</a></li>
+                        <li><a href="#">Tra cứu vi phạm</a></li>
+                        <li><a href="#">Cài đặt</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section contact">
+                    <h4>Liên hệ</h4>
+                    <ul>
+                        <li><i class="fas fa-map-marker-alt"></i> 123 Đường ABC, Quận 1, TP.HCM</li>
+                        <li><i class="fas fa-phone"></i> (028) 3812 3456</li>
+                        <li><i class="fas fa-envelope"></i> support@botgiaothong.vn</li>
+                    </ul>
+                </div>
+                <div class="footer-section newsletter">
+                    <h4>Đăng ký nhận tin</h4>
+                    <p>Nhận thông tin giao thông quan trọng hàng tuần.</p>
+                    <div class="newsletter-form">
+                        <input type="email" placeholder="Nhập email của bạn...">
+                        <button><i class="fas fa-paper-plane"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Bot Giao Thông. All rights reserved. Designed with <i class="fas fa-heart"></i>.</p>
+            </div>
+        </div>
+    </footer>
+    
+    <script src="chatbot-script.js"></script>
+</body>
+</html>

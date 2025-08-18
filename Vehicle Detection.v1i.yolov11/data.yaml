@@ -1,0 +1,14 @@
+train: ../train/images
+val: ../valid/images
+test: ../test/images
+
+names:
+    1: car
+    2: motorbike
+
+roboflow:
+  workspace: abcduahauhz
+  project: vehicle-detection-3mmwj-qtftf
+  version: 1
+  license: Private
+  url: https://universe.roboflow.com/abcduahauhz/vehicle-detection-3mmwj-qtftf/dataset/1

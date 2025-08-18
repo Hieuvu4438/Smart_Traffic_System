@@ -1,0 +1,1384 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hệ thống Mô phỏng Giao thông Thời gian Thực</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        /* GLOBAL STYLES & VARIABLES */
+        :root {
+            --color-primary: #2d5a27;
+            --color-primary-light: #4a7c59;
+            --color-primary-lighter: #6b9080;
+            --color-primary-bg: #f0f8f5;
+            
+            --color-text: #1f2937;
+            --color-text-secondary: #4b5563;
+            --color-text-light: #9ca3af;
+            
+            --color-bg: #f9fafb;
+            --color-surface: #ffffff;
+            --color-border: #e5e7eb;
+            
+            --color-accent: #f59e0b;
+            --color-accent-red: #ef4444;
+            --color-accent-green: #10b981;
+            
+            --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+            
+            --radius-sm: 0.375rem;
+            --radius-md: 0.5rem;
+            --radius-lg: 0.75rem;
+            --radius-xl: 1rem;
+            
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-sans);
+            line-height: 1.6;
+            color: var(--color-text);
+            background-color: var(--color-bg);
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            padding-top: 80px;
+        }
+
+        /* HEADER */
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--color-border);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            height: 80px;
+            display: flex;
+            align-items: center;
+        }
+
+        .header-content {
+            max-width: 1700px;
+            margin: 0 auto;
+            padding: 0 20px;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--color-primary);
+        }
+
+        .logo i {
+            font-size: 32px;
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .status-indicator {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            background: var(--color-primary-bg);
+            border-radius: var(--radius-full);
+            color: var(--color-primary);
+            font-weight: 600;
+        }
+
+        .live-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--color-accent-green);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        /* MAIN LAYOUT */
+        .main-content {
+            max-width: 1700px;
+            margin: 0 auto;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            grid-template-rows: 1fr auto;
+            gap: 20px;
+            height: calc(100vh - 120px);
+        }
+
+        /* SIMULATION AREA */
+        .simulation-panel {
+            background: var(--color-surface);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-md);
+            padding: 20px;
+            overflow: hidden;
+        }
+
+        .simulation-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .simulation-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--color-primary);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .view-controls {
+            display: flex;
+            gap: 10px;
+        }
+
+        .view-btn {
+            padding: 8px 16px;
+            background: var(--color-primary-bg);
+            border: 1px solid var(--color-primary-light);
+            border-radius: var(--radius-md);
+            color: var(--color-primary);
+            cursor: pointer;
+            transition: var(--transition);
+            font-size: 14px;
+        }
+
+        .view-btn.active,
+        .view-btn:hover {
+            background: var(--color-primary);
+            color: white;
+        }
+
+        /* ROAD SIMULATION */
+        .road-simulation {
+            height: calc(100% - 80px);
+            background: linear-gradient(135deg, #f0f8f5 0%, #e8f5e8 100%);
+            border-radius: var(--radius-md);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .road-network {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 90%;
+            height: 90%;
+        }
+
+        /* INTERSECTIONS */
+        .intersection {
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            background: #666;
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: var(--shadow-md);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .intersection:hover {
+            transform: scale(1.1);
+        }
+
+        .intersection-1 { top: 10%; left: 20%; }
+        .intersection-2 { top: 10%; right: 20%; }
+        .intersection-3 { top: 50%; left: 50%; transform: translate(-50%, -50%); }
+        .intersection-4 { bottom: 10%; left: 20%; }
+        .intersection-5 { bottom: 10%; right: 20%; }
+
+        .traffic-light {
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+            align-items: center;
+        }
+
+        .light {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            opacity: 0.3;
+        }
+
+        .light.red { background: #ef4444; }
+        .light.yellow { background: #f59e0b; }
+        .light.green { background: #10b981; }
+
+        .light.active { opacity: 1; box-shadow: 0 0 10px currentColor; }
+
+        /* ROADS */
+        .road {
+            position: absolute;
+            background: #888;
+            border-radius: 2px;
+        }
+
+        .road-horizontal {
+            height: 8px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .road-vertical {
+            width: 8px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .road-1 { left: 24%; width: 22%; }
+        .road-2 { right: 24%; width: 22%; }
+        .road-3 { top: 14%; height: 32%; }
+        .road-4 { bottom: 14%; height: 32%; }
+
+        /* VEHICLES */
+        .vehicle {
+            position: absolute;
+            width: 20px;
+            height: 12px;
+            background: var(--color-primary);
+            border-radius: 2px;
+            transition: all 1s ease-in-out;
+        }
+
+        .vehicle::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 8px;
+            height: 6px;
+            background: white;
+            border-radius: 1px;
+        }
+
+        /* INFO PANEL */
+        .info-panel {
+            background: var(--color-surface);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-md);
+            padding: 20px;
+            overflow-y: auto;
+        }
+
+        .panel-section {
+            margin-bottom: 25px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .panel-section:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+        }
+
+        .section-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--color-primary);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* CAMERA FEEDS */
+        .camera-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .camera-feed {
+            aspect-ratio: 16/9;
+            background: #000;
+            border-radius: var(--radius-md);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .camera-feed::before {
+            content: 'CAM ' attr(data-cam);
+            position: absolute;
+            top: 8px;
+            left: 8px;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 4px 8px;
+            border-radius: var(--radius-sm);
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .camera-feed::after {
+            content: '●';
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            color: var(--color-accent-green);
+            font-size: 16px;
+            animation: pulse 2s infinite;
+        }
+
+        /* TRAFFIC STATUS */
+        .traffic-status {
+            display: grid;
+            gap: 8px;
+        }
+
+        .intersection-status {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px;
+            background: var(--color-primary-bg);
+            border-radius: var(--radius-md);
+        }
+
+        .intersection-name {
+            font-weight: 600;
+            color: var(--color-primary);
+        }
+
+        .current-light {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+        }
+
+        .light-indicator {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+
+        .countdown {
+            font-weight: 600;
+            color: var(--color-text);
+        }
+
+        /* DENSITY STATS */
+        .density-stats {
+            display: grid;
+            gap: 10px;
+        }
+
+        .density-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            background: var(--color-surface);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-md);
+        }
+
+        .density-label {
+            font-size: 14px;
+            color: var(--color-text-secondary);
+        }
+
+        .density-value {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 600;
+        }
+
+        .density-bar {
+            width: 60px;
+            height: 6px;
+            background: var(--color-border);
+            border-radius: var(--radius-full);
+            overflow: hidden;
+        }
+
+        .density-fill {
+            height: 100%;
+            border-radius: var(--radius-full);
+            transition: var(--transition);
+        }
+
+        .density-low { background: var(--color-accent-green); }
+        .density-medium { background: var(--color-accent); }
+        .density-high { background: var(--color-accent-red); }
+
+        /* CONTROL PANEL */
+        .control-panel {
+            grid-column: 1 / -1;
+            background: var(--color-surface);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-md);
+            padding: 20px;
+        }
+
+        .control-tabs {
+            display: flex;
+            gap: 2px;
+            margin-bottom: 20px;
+            background: var(--color-primary-bg);
+            border-radius: var(--radius-md);
+            padding: 4px;
+        }
+
+        .tab-btn {
+            flex: 1;
+            padding: 12px 20px;
+            background: transparent;
+            border: none;
+            border-radius: var(--radius-sm);
+            cursor: pointer;
+            font-weight: 600;
+            color: var(--color-primary);
+            transition: var(--transition);
+        }
+
+        .tab-btn.active {
+            background: var(--color-surface);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        /* SCENARIOS */
+        .scenarios-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 15px;
+        }
+
+        .scenario-card {
+            background: var(--color-primary-bg);
+            border: 1px solid var(--color-primary-light);
+            border-radius: var(--radius-md);
+            padding: 20px;
+            transition: var(--transition);
+        }
+
+        .scenario-card:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .scenario-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 15px;
+        }
+
+        .scenario-title {
+            font-weight: 600;
+            color: var(--color-primary);
+            margin-bottom: 5px;
+        }
+
+        .scenario-impact {
+            font-size: 12px;
+            padding: 4px 8px;
+            border-radius: var(--radius-sm);
+            font-weight: 600;
+        }
+
+        .impact-positive {
+            background: #dcfce7;
+            color: #166534;
+        }
+
+        .impact-neutral {
+            background: #fef3c7;
+            color: #92400e;
+        }
+
+        .scenario-description {
+            font-size: 14px;
+            color: var(--color-text-secondary);
+            margin-bottom: 15px;
+            line-height: 1.5;
+        }
+
+        .scenario-stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 8px;
+            background: var(--color-surface);
+            border-radius: var(--radius-sm);
+        }
+
+        .stat-value {
+            font-weight: 700;
+            font-size: 16px;
+            color: var(--color-primary);
+        }
+
+        .stat-label {
+            font-size: 12px;
+            color: var(--color-text-light);
+        }
+
+        .apply-btn {
+            width: 100%;
+            padding: 12px;
+            background: var(--color-primary);
+            color: white;
+            border: none;
+            border-radius: var(--radius-md);
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .apply-btn:hover {
+            background: var(--color-primary-light);
+            transform: translateY(-1px);
+        }
+
+        /* MANUAL CONTROLS */
+        .manual-controls {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .control-group {
+            background: var(--color-primary-bg);
+            border-radius: var(--radius-md);
+            padding: 20px;
+        }
+
+        .control-title {
+            font-weight: 600;
+            color: var(--color-primary);
+            margin-bottom: 15px;
+        }
+
+        .control-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .control-slider {
+            width: 60%;
+            height: 6px;
+            background: var(--color-border);
+            border-radius: var(--radius-full);
+            outline: none;
+            opacity: 0.7;
+            transition: opacity 0.2s;
+        }
+
+        .control-slider:hover {
+            opacity: 1;
+        }
+
+        .control-slider::-webkit-slider-thumb {
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            background: var(--color-primary);
+            border-radius: 50%;
+            cursor: pointer;
+        }
+
+        .control-value {
+            font-weight: 600;
+            color: var(--color-primary);
+            min-width: 40px;
+            text-align: right;
+        }
+
+        /* HISTORY */
+        .history-list {
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        .history-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .history-item:last-child {
+            border-bottom: none;
+        }
+
+        .history-info {
+            flex: 1;
+        }
+
+        .history-time {
+            font-size: 12px;
+            color: var(--color-text-light);
+        }
+
+        .history-scenario {
+            font-weight: 600;
+            color: var(--color-primary);
+            margin: 5px 0;
+        }
+
+        .history-result {
+            font-size: 14px;
+            color: var(--color-text-secondary);
+        }
+
+        .history-status {
+            padding: 4px 8px;
+            border-radius: var(--radius-sm);
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .status-success {
+            background: #dcfce7;
+            color: #166534;
+        }
+
+        .status-failed {
+            background: #fee2e2;
+            color: #991b1b;
+        }
+
+        /* ALERTS */
+        .alerts-container {
+            position: fixed;
+            top: 100px;
+            right: 20px;
+            z-index: 1001;
+            max-width: 350px;
+        }
+
+        .alert {
+            background: var(--color-surface);
+            border-left: 4px solid var(--color-accent-red);
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-lg);
+            padding: 15px;
+            margin-bottom: 10px;
+            animation: slideIn 0.3s ease-out;
+        }
+
+        .alert-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+
+        .alert-title {
+            font-weight: 600;
+            color: var(--color-accent-red);
+            font-size: 14px;
+        }
+
+        .alert-close {
+            background: none;
+            border: none;
+            color: var(--color-text-light);
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .alert-message {
+            font-size: 13px;
+            color: var(--color-text-secondary);
+            line-height: 1.4;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 1200px) {
+            .main-content {
+                grid-template-columns: 1fr;
+                grid-template-rows: auto auto auto;
+                height: auto;
+            }
+            
+            .control-panel {
+                grid-column: 1;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-content {
+                padding: 0 15px;
+            }
+            
+            .logo span {
+                display: none;
+            }
+            
+            .main-content {
+                padding: 15px;
+                gap: 15px;
+            }
+            
+            .camera-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .scenarios-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .manual-controls {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <div class="logo">
+                <i class="fas fa-route"></i>
+                <span>Hệ thống Mô phỏng Giao thông</span>
+            </div>
+            <div class="header-right">
+                <div class="status-indicator">
+                    <span class="live-dot"></span>
+                    <span>Đang hoạt động</span>
+                </div>
+                <div style="color: var(--color-text-secondary); font-size: 14px;">
+                    <i class="fas fa-clock"></i>
+                    <span id="current-time">14:30:25</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Road Simulation Panel -->
+        <div class="simulation-panel">
+            <div class="simulation-header">
+                <div class="simulation-title">
+                    <i class="fas fa-map"></i>
+                    Mô phỏng Tuyến đường
+                </div>
+                <div class="view-controls">
+                    <button class="view-btn active">Toàn tuyến</button>
+                    <button class="view-btn">Chi tiết</button>
+                </div>
+            </div>
+            
+            <div class="road-simulation">
+                <div class="road-network">
+                    <!-- Roads -->
+                    <div class="road road-horizontal road-1"></div>
+                    <div class="road road-horizontal road-2"></div>
+                    <div class="road road-vertical road-3"></div>
+                    <div class="road road-vertical road-4"></div>
+                    
+                    <!-- Intersections -->
+                    <div class="intersection intersection-1" data-intersection="1">
+                        <div class="traffic-light">
+                            <div class="light red active"></div>
+                            <div class="light yellow"></div>
+                            <div class="light green"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="intersection intersection-2" data-intersection="2">
+                        <div class="traffic-light">
+                            <div class="light red"></div>
+                            <div class="light yellow"></div>
+                            <div class="light green active"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="intersection intersection-3" data-intersection="3">
+                        <div class="traffic-light">
+                            <div class="light red"></div>
+                            <div class="light yellow active"></div>
+                            <div class="light green"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="intersection intersection-4" data-intersection="4">
+                        <div class="traffic-light">
+                            <div class="light red"></div>
+                            <div class="light yellow"></div>
+                            <div class="light green active"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="intersection intersection-5" data-intersection="5">
+                        <div class="traffic-light">
+                            <div class="light red active"></div>
+                            <div class="light yellow"></div>
+                            <div class="light green"></div>
+                        </div>
+                    </div>
+                    
+                    <!-- Vehicles (will be animated) -->
+                    <div class="vehicle" style="top: 48%; left: 15%;"></div>
+                    <div class="vehicle" style="top: 52%; right: 25%;"></div>
+                    <div class="vehicle" style="left: 48%; top: 20%;"></div>
+                    <div class="vehicle" style="right: 48%; bottom: 25%;"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Info Panel -->
+        <div class="info-panel">
+            <!-- Camera Feeds -->
+            <div class="panel-section">
+                <div class="section-title">
+                    <i class="fas fa-video"></i>
+                    Camera Giám sát
+                </div>
+                <div class="camera-grid">
+                    <div class="camera-feed" data-cam="1"></div>
+                    <div class="camera-feed" data-cam="2"></div>
+                    <div class="camera-feed" data-cam="3"></div>
+                    <div class="camera-feed" data-cam="4"></div>
+                </div>
+                <div class="camera-feed" data-cam="5" style="grid-column: 1 / -1; margin-top: 10px;"></div>
+            </div>
+
+            <!-- Traffic Light Status -->
+            <div class="panel-section">
+                <div class="section-title">
+                    <i class="fas fa-traffic-light"></i>
+                    Trạng thái Đèn giao thông
+                </div>
+                <div class="traffic-status">
+                    <div class="intersection-status">
+                        <span class="intersection-name">Ngã tư 1</span>
+                        <div class="current-light">
+                            <div class="light-indicator" style="background: #ef4444;"></div>
+                            <span class="countdown">25s</span>
+                        </div>
+                    </div>
+                    <div class="intersection-status">
+                        <span class="intersection-name">Ngã tư 2</span>
+                        <div class="current-light">
+                            <div class="light-indicator" style="background: #10b981;"></div>
+                            <span class="countdown">40s</span>
+                        </div>
+                    </div>
+                    <div class="intersection-status">
+                        <span class="intersection-name">Ngã tư 3</span>
+                        <div class="current-light">
+                            <div class="light-indicator" style="background: #f59e0b;"></div>
+                            <span class="countdown">5s</span>
+                        </div>
+                    </div>
+                    <div class="intersection-status">
+                        <span class="intersection-name">Ngã tư 4</span>
+                        <div class="current-light">
+                            <div class="light-indicator" style="background: #10b981;"></div>
+                            <span class="countdown">35s</span>
+                        </div>
+                    </div>
+                    <div class="intersection-status">
+                        <span class="intersection-name">Ngã tư 5</span>
+                        <div class="current-light">
+                            <div class="light-indicator" style="background: #ef4444;"></div>
+                            <span class="countdown">18s</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Traffic Density -->
+            <div class="panel-section">
+                <div class="section-title">
+                    <i class="fas fa-chart-bar"></i>
+                    Mật độ Giao thông
+                </div>
+                <div class="density-stats">
+                    <div class="density-item">
+                        <span class="density-label">Ngã tư 1-2</span>
+                        <div class="density-value">
+                            <span>Cao</span>
+                            <div class="density-bar">
+                                <div class="density-fill density-high" style="width: 85%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="density-item">
+                        <span class="density-label">Ngã tư 2-3</span>
+                        <div class="density-value">
+                            <span>Trung bình</span>
+                            <div class="density-bar">
+                                <div class="density-fill density-medium" style="width: 60%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="density-item">
+                        <span class="density-label">Ngã tư 3-4</span>
+                        <div class="density-value">
+                            <span>Thấp</span>
+                            <div class="density-bar">
+                                <div class="density-fill density-low" style="width: 30%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="density-item">
+                        <span class="density-label">Ngã tư 4-5</span>
+                        <div class="density-value">
+                            <span>Trung bình</span>
+                            <div class="density-bar">
+                                <div class="density-fill density-medium" style="width: 55%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Control Panel -->
+        <div class="control-panel">
+            <div class="control-tabs">
+                <button class="tab-btn active" data-tab="scenarios">Kịch bản Đề xuất</button>
+                <button class="tab-btn" data-tab="manual">Điều khiển Thủ công</button>
+                <button class="tab-btn" data-tab="history">Lịch sử</button>
+            </div>
+
+            <!-- Scenarios Tab -->
+            <div class="tab-content active" id="scenarios">
+                <div class="scenarios-grid">
+                    <div class="scenario-card">
+                        <div class="scenario-header">
+                            <div>
+                                <div class="scenario-title">Kịch bản Tối ưu A</div>
+                                <div class="scenario-impact impact-positive">Hiệu quả cao</div>
+                            </div>
+                        </div>
+                        <div class="scenario-description">
+                            Kéo dài đèn xanh Ngã tư 1 thêm 15s, giảm đèn đỏ Ngã tư 3 xuống 10s. Dự kiến giảm thời gian chờ trung bình 20%.
+                        </div>
+                        <div class="scenario-stats">
+                            <div class="stat-item">
+                                <div class="stat-value">-20%</div>
+                                <div class="stat-label">Thời gian chờ</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-value">+15%</div>
+                                <div class="stat-label">Lưu lượng</div>
+                            </div>
+                        </div>
+                        <button class="apply-btn">Áp dụng Kịch bản</button>
+                    </div>
+
+                    <div class="scenario-card">
+                        <div class="scenario-header">
+                            <div>
+                                <div class="scenario-title">Kịch bản Tối ưu B</div>
+                                <div class="scenario-impact impact-positive">Hiệu quả trung bình</div>
+                            </div>
+                        </div>
+                        <div class="scenario-description">
+                            Đồng bộ hóa đèn giao thông Ngã tư 2, 3, 4 với chu kỳ 90s. Tạo sóng xanh cho tuyến đường chính.
+                        </div>
+                        <div class="scenario-stats">
+                            <div class="stat-item">
+                                <div class="stat-value">-12%</div>
+                                <div class="stat-label">Thời gian chờ</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-value">+8%</div>
+                                <div class="stat-label">Lưu lượng</div>
+                            </div>
+                        </div>
+                        <button class="apply-btn">Áp dụng Kịch bản</button>
+                    </div>
+
+                    <div class="scenario-card">
+                        <div class="scenario-header">
+                            <div>
+                                <div class="scenario-title">Kịch bản Khẩn cấp</div>
+                                <div class="scenario-impact impact-neutral">Tạm thời</div>
+                            </div>
+                        </div>
+                        <div class="scenario-description">
+                            Ưu tiên luồng xe từ Ngã tư 1 đến Ngã tư 5 để giải tỏa tắc nghẽn nghiêm trọng. Áp dụng trong 10 phút.
+                        </div>
+                        <div class="scenario-stats">
+                            <div class="stat-item">
+                                <div class="stat-value">-35%</div>
+                                <div class="stat-label">Tắc nghẽn</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-value">10min</div>
+                                <div class="stat-label">Thời gian</div>
+                            </div>
+                        </div>
+                        <button class="apply-btn">Áp dụng Kịch bản</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Manual Control Tab -->
+            <div class="tab-content" id="manual">
+                <div class="manual-controls">
+                    <div class="control-group">
+                        <div class="control-title">Ngã tư 1</div>
+                        <div class="control-item">
+                            <span>Đèn đỏ</span>
+                            <input type="range" class="control-slider" min="10" max="90" value="30">
+                            <span class="control-value">30s</span>
+                        </div>
+                        <div class="control-item">
+                            <span>Đèn xanh</span>
+                            <input type="range" class="control-slider" min="10" max="90" value="45">
+                            <span class="control-value">45s</span>
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <div class="control-title">Ngã tư 2</div>
+                        <div class="control-item">
+                            <span>Đèn đỏ</span>
+                            <input type="range" class="control-slider" min="10" max="90" value="35">
+                            <span class="control-value">35s</span>
+                        </div>
+                        <div class="control-item">
+                            <span>Đèn xanh</span>
+                            <input type="range" class="control-slider" min="10" max="90" value="40">
+                            <span class="control-value">40s</span>
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <div class="control-title">Ngã tư 3</div>
+                        <div class="control-item">
+                            <span>Đèn đỏ</span>
+                            <input type="range" class="control-slider" min="10" max="90" value="25">
+                            <span class="control-value">25s</span>
+                        </div>
+                        <div class="control-item">
+                            <span>Đèn xanh</span>
+                            <input type="range" class="control-slider" min="10" max="90" value="50">
+                            <span class="control-value">50s</span>
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <div class="control-title">Ngã tư 4</div>
+                        <div class="control-item">
+                            <span>Đèn đỏ</span>
+                            <input type="range" class="control-slider" min="10" max="90" value="40">
+                            <span class="control-value">40s</span>
+                        </div>
+                        <div class="control-item">
+                            <span>Đèn xanh</span>
+                            <input type="range" class="control-slider" min="10" max="90" value="35">
+                            <span class="control-value">35s</span>
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <div class="control-title">Ngã tư 5</div>
+                        <div class="control-item">
+                            <span>Đèn đỏ</span>
+                            <input type="range" class="control-slider" min="10" max="90" value="32">
+                            <span class="control-value">32s</span>
+                        </div>
+                        <div class="control-item">
+                            <span>Đèn xanh</span>
+                            <input type="range" class="control-slider" min="10" max="90" value="43">
+                            <span class="control-value">43s</span>
+                        </div>
+                    </div>
+                </div>
+                <div style="margin-top: 20px; text-align: center;">
+                    <button class="apply-btn" style="width: auto; padding: 12px 40px;">Áp dụng Thay đổi</button>
+                </div>
+            </div>
+
+            <!-- History Tab -->
+            <div class="tab-content" id="history">
+                <div class="history-list">
+                    <div class="history-item">
+                        <div class="history-info">
+                            <div class="history-time">14:25:30 - 28/07/2025</div>
+                            <div class="history-scenario">Kịch bản Tối ưu A</div>
+                            <div class="history-result">Giảm thời gian chờ 18%, tăng lưu lượng 12%</div>
+                        </div>
+                        <div class="history-status status-success">Thành công</div>
+                    </div>
+
+                    <div class="history-item">
+                        <div class="history-info">
+                            <div class="history-time">14:10:15 - 28/07/2025</div>
+                            <div class="history-scenario">Điều chỉnh thủ công Ngã tư 3</div>
+                            <div class="history-result">Kéo dài đèn xanh 20s, cải thiện lưu lượng</div>
+                        </div>
+                        <div class="history-status status-success">Thành công</div>
+                    </div>
+
+                    <div class="history-item">
+                        <div class="history-info">
+                            <div class="history-time">13:45:22 - 28/07/2025</div>
+                            <div class="history-scenario">Kịch bản Khẩn cấp</div>
+                            <div class="history-result">Giải tỏa tắc nghẽn tại Ngã tư 1-2</div>
+                        </div>
+                        <div class="history-status status-success">Thành công</div>
+                    </div>
+
+                    <div class="history-item">
+                        <div class="history-info">
+                            <div class="history-time">13:20:45 - 28/07/2025</div>
+                            <div class="history-scenario">Kịch bản Tối ưu B</div>
+                            <div class="history-result">Không đạt hiệu quả mong đợi</div>
+                        </div>
+                        <div class="history-status status-failed">Thất bại</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Alerts -->
+    <div class="alerts-container">
+        <div class="alert">
+            <div class="alert-header">
+                <span class="alert-title">⚠️ Cảnh báo Tắc nghẽn</span>
+                <button class="alert-close">&times;</button>
+            </div>
+            <div class="alert-message">
+                Phát hiện tắc nghẽn nghiêm trọng tại đoạn đường Ngã tư 1-2. Mật độ xe: 85%. Đề xuất áp dụng kịch bản khẩn cấp.
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Tab switching functionality
+        document.querySelectorAll('.tab-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const targetTab = btn.getAttribute('data-tab');
+                
+                // Update tab buttons
+                document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                
+                // Update tab content
+                document.querySelectorAll('.tab-content').forEach(content => {
+                    content.classList.remove('active');
+                });
+                document.getElementById(targetTab).classList.add('active');
+            });
+        });
+
+        // View control functionality
+        document.querySelectorAll('.view-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.view-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+            });
+        });
+
+        // Slider value updates
+        document.querySelectorAll('.control-slider').forEach(slider => {
+            slider.addEventListener('input', (e) => {
+                const valueSpan = e.target.nextElementSibling;
+                valueSpan.textContent = e.target.value + 's';
+            });
+        });
+
+        // Close alert functionality
+        document.querySelectorAll('.alert-close').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.target.closest('.alert').remove();
+            });
+        });
+
+        // Update current time
+        function updateTime() {
+            const now = new Date();
+            const timeString = now.toLocaleTimeString('vi-VN', { hour12: false });
+            document.getElementById('current-time').textContent = timeString;
+        }
+        
+        updateTime();
+        setInterval(updateTime, 1000);
+
+        // Simulate traffic light changes
+        function simulateTrafficLights() {
+            const intersections = document.querySelectorAll('.intersection');
+            
+            intersections.forEach((intersection, index) => {
+                const lights = intersection.querySelectorAll('.light');
+                let currentLight = 0;
+                
+                setInterval(() => {
+                    lights.forEach(light => light.classList.remove('active'));
+                    lights[currentLight].classList.add('active');
+                    currentLight = (currentLight + 1) % 3;
+                }, (index + 1) * 3000 + 2000); // Different timing for each intersection
+            });
+        }
+
+        // Simulate vehicle movement
+        function simulateVehicles() {
+            const vehicles = document.querySelectorAll('.vehicle');
+            
+            vehicles.forEach((vehicle, index) => {
+                setInterval(() => {
+                    const randomX = Math.random() * 80 + 10;
+                    const randomY = Math.random() * 80 + 10;
+                    
+                    if (index % 2 === 0) {
+                        vehicle.style.left = randomX + '%';
+                    } else {
+                        vehicle.style.top = randomY + '%';
+                    }
+                }, (index + 1) * 2000 + 1000);
+            });
+        }
+
+        // Simulate traffic density updates
+        function simulateDensity() {
+            const densityFills = document.querySelectorAll('.density-fill');
+            const densityValues = document.querySelectorAll('.density-value span:first-child');
+            
+            setInterval(() => {
+                densityFills.forEach((fill, index) => {
+                    const randomValue = Math.random() * 100;
+                    fill.style.width = randomValue + '%';
+                    
+                    let level, className;
+                    if (randomValue < 33) {
+                        level = 'Thấp';
+                        className = 'density-low';
+                    } else if (randomValue < 66) {
+                        level = 'Trung bình';
+                        className = 'density-medium';
+                    } else {
+                        level = 'Cao';
+                        className = 'density-high';
+                    }
+                    
+                    fill.className = `density-fill ${className}`;
+                    densityValues[index].textContent = level;
+                });
+            }, 5000);
+        }
+
+        // Simulate countdown timers
+        function simulateCountdowns() {
+            const countdowns = document.querySelectorAll('.countdown');
+            
+            countdowns.forEach((countdown, index) => {
+                let time = parseInt(countdown.textContent);
+                
+                setInterval(() => {
+                    time--;
+                    if (time <= 0) {
+                        time = Math.floor(Math.random() * 50) + 20; // Reset to random time between 20-70s
+                    }
+                    countdown.textContent = time + 's';
+                }, 1000);
+            });
+        }
+
+        // Apply scenario button functionality
+        document.querySelectorAll('.apply-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const originalText = btn.textContent;
+                btn.textContent = 'Đang áp dụng...';
+                btn.disabled = true;
+                
+                setTimeout(() => {
+                    btn.textContent = 'Đã áp dụng ✓';
+                    btn.style.background = 'var(--color-accent-green)';
+                    
+                    setTimeout(() => {
+                        btn.textContent = originalText;
+                        btn.disabled = false;
+                        btn.style.background = '';
+                    }, 2000);
+                }, 1500);
+            });
+        });
+
+        // Initialize simulations
+        simulateTrafficLights();
+        simulateVehicles();
+        simulateDensity();
+        simulateCountdowns();
+
+        // Intersection click functionality
+        document.querySelectorAll('.intersection').forEach(intersection => {
+            intersection.addEventListener('click', () => {
+                const intersectionNum = intersection.getAttribute('data-intersection');
+                alert(`Chi tiết ngã tư ${intersectionNum} sẽ được hiển thị ở đây`);
+            });
+        });
+    </script>
+</body>
+</html>

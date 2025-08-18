@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hệ thống quản lý giao thông</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-left">
+                <div class="logo">
+                    <i class="fas fa-traffic-light"></i>
+                    <span>Traffic System</span>
+                </div>
+                <nav class="nav-menu">
+                    <a href="index.html" class="nav-link active">
+                        <i class="fas fa-home"></i>
+                        <span>Trang chủ</span>
+                    </a>
+                    <a href="chatbot-new.html" class="nav-link">
+                        <i class="fas fa-route"></i>
+                        <span>Tuyến đường</span>
+                    </a>
+                    <a href="#" class="nav-link">
+                        <i class="fas fa-phone"></i>
+                        <span>Liên hệ</span>
+                    </a>
+                    <a href="#" class="nav-link">
+                        <i class="fas fa-info-circle"></i>
+                        <span>Giới thiệu</span>
+                    </a>
+                    <a href="violation.html" class="nav-link">
+                        <i class="fas fa-search"></i>
+                        <span>Tra cứu</span>
+                    </a>
+                </nav>
+            </div>
+            <div class="header-right">
+                <div class="notification-bell">
+                    <i class="fas fa-bell"></i>
+                    <span class="notification-badge">3</span>
+                </div>
+                <a href="#" class="btn-login">
+                    <i class="fas fa-sign-in-alt"></i>
+                    <span>Đăng nhập</span>
+                </a>
+                <div class="user-avatar">
+                    <img src="picture-icon-no-image-symbol-260nw-1572613234.webp" alt="User Avatar">
+                    <div class="online-status"></div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <!-- First Section: Sidebar + Camera Grid -->
+            <section class="camera-section">
+                <div class="sidebar">
+                    <!-- Weather-like info widget -->
+                    <div class="info-widget">
+                        <div class="widget-header">
+                            <div class="location-info">
+                                <i class="fas fa-camera"></i>
+                                <div class="location-details">
+                                    <span class="city">TP. Hà Nội</span>
+                                    <span class="status">Đang hoạt động</span>
+                                </div>
+                            </div>
+                            <div class="temperature">
+                                <span class="temp-value">35°C</span>
+                                <i class="fas fa-sun weather-icon"></i>
+                            </div>
+                        </div>
+                        <div class="widget-info">
+                            <span class="time-info">Nắng to</span>
+                        </div>
+                    </div>
+
+                    <div class="search-container">
+                        <div class="search-group">
+                            <input type="text" placeholder="Quận Cầu Giấy" class="search-input district-search">
+                            <select class="camera-type-select">
+                                <option value="">32 Cam...</option>
+                                <option value="speed">Camera tốc độ</option>
+                                <option value="traffic">Camera giao thông</option>
+                                <option value="violation">Camera vi phạm</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="camera-list">
+                        <div class="camera-item">
+                            <div class="camera-info">
+                                <h4>HN1_NT_KDT_Nguyễn Trãi-Ngã Tư Sở</h4>
+                                <p><i class="fas fa-map-marker-alt"></i> Số 4 Nguyễn Xiển, Phường Thanh Liệt, Thành phố Hà Nội</p>
+                                <span class="distance">2.56km</span>
+                            </div>
+                            <i class="far fa-star favorite"></i>
+                        </div>
+                        <div class="camera-item">
+                            <div class="camera-info">
+                                <h4>HN1_NT_KDT_Nguyễn Trãi-Ngã Tư Sở</h4>
+                                <p><i class="fas fa-map-marker-alt"></i> Số 4 Nguyễn Xiển, Phường Thanh Liệt, Thành phố Hà Nội</p>
+                                <span class="distance">2.56km</span>
+                            </div>
+                            <i class="far fa-star favorite"></i>
+                        </div>
+                        <div class="camera-item">
+                            <div class="camera-info">
+                                <h4>HN1_NT_KDT_Nguyễn Trãi-Ngã Tư Sở</h4>
+                                <p><i class="fas fa-map-marker-alt"></i> Số 4 Nguyễn Xiển, Phường Thanh Liệt, Thành phố Hà Nội</p>
+                                <span class="distance">2.56km</span>
+                            </div>
+                            <i class="far fa-star favorite"></i>
+                        </div>
+                        <div class="camera-item">
+                            <div class="camera-info">
+                                <h4>HN1_NT_KDT_Nguyễn Trãi-Ngã Tư Sở</h4>
+                                <p><i class="fas fa-map-marker-alt"></i> Số 4 Nguyễn Xiển, Phường Thanh Liệt, Thành phố Hà Nội</p>
+                                <span class="distance">2.56km</span>
+                            </div>
+                            <i class="far fa-star favorite"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="camera-grid">
+                    <!-- Main large camera view -->
+                    <div class="main-camera">
+                        
+                        <div class="camera-frame">
+                            <div class="live-indicator">
+                                <span class="live-dot"></span>
+                                LIVE
+                            </div>
+                            <div class="camera-placeholder">
+                                <i class="fas fa-image"></i>
+                            </div>
+                            <div class="timestamp">2025-07-18 08:34:55</div>
+                        </div>
+                    </div>
+
+                    <!-- Small camera in top right -->
+                    <div class="side-camera">
+                        <div class="camera-frame small">
+                            <img src="https://i0.wp.com/copyassignment.com/wp-content/uploads/2022/06/Violation_Detection_Frame.jpg" alt="Live camera feed" class="camera-background">
+                            <div class="live-indicator">
+                                <span class="live-dot"></span>
+                                LIVE
+                            </div>
+                            <div class="camera-placeholder small">
+                                <i class="fas fa-image"></i>
+                            </div>
+                        </div>
+                        <div class="camera-category">
+        
+                            <span class="category-label">Category</span>
+                            <h3>Kiểm tra hành vi vi phạm</h3>
+                            <p>ID 01: Xe máy / Có đội mũ / 40km/h /<br>
+                            Vượt đèn đỏ</p>
+                        </div>
+                    </div>
+
+                    <!-- Bottom three cameras -->
+                    <div class="bottom-cameras">
+                        <div class="bottom-camera">
+                            <div class="camera-frame small">
+                                <img src="https://i.ytimg.com/vi/JDzSYEr05Qg/maxresdefault.jpg" alt="Live camera feed" class="camera-background">
+                                <div class="live-indicator">
+                                    <span class="live-dot"></span>
+                                    LIVE
+                                </div>
+                                <div class="camera-placeholder small">
+                                    <i class="fas fa-image"></i>
+                                </div>
+                            </div>
+                            <div class="camera-info-bottom">
+                                <span class="category-label">Category</span>
+                                <h3>Thống kê mật độ</h3>
+                                <p>Xe ô tô: 33 chiếc<br>Xe máy: 0 chiếc</p>
+                            </div>
+                        </div>
+
+                        <div class="bottom-camera">
+                            <div class="camera-frame small">
+                                <img src="https://i0.wp.com/ubiai.tools/wp-content/uploads/2023/10/YOLO.jpg?fit=1200%2C600&ssl=1" alt="Live camera feed" class="camera-background">
+                                <div class="live-indicator">
+                                    <span class="live-dot"></span>
+                                    LIVE
+                                </div>
+                                <div class="camera-placeholder small">
+                                    <i class="fas fa-image"></i>
+                                </div>
+                            </div>
+                            <div class="camera-info-bottom">
+                                <span class="category-label">Category</span>
+                                <h3>Kiểm tra ùn tắc</h3>
+                                <p>Sử dụng Heatmap để phân không, dự<br>đoán ùn tắc thông qua YOLO</p>
+                            </div>
+                        </div>
+
+                        <div class="bottom-camera">
+                            <div class="camera-frame small">
+                                <img src="https://kotaielectronics.com/wp-content/uploads/2023/12/number-plate-recognition_w0E9WLy.webp" alt="Live camera feed" class="camera-background">
+                                <div class="live-indicator">
+                                    <span class="live-dot"></span>
+                                    LIVE
+                                </div>
+                                <div class="camera-placeholder small">
+                                    <i class="fas fa-image"></i>
+                                </div>
+                            </div>
+                            <div class="camera-info-bottom">
+                                <span class="category-label">Category</span>
+                                <h3>Trích xuất thông tin</h3>
+                                <p>ID 01: Biển số xe: 29K2 123456<br>
+                                Vi phạm: vượt đèn đỏ, vượt quá tốc<br></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Services Header -->
+            <div class="services-header">
+                <h1>Các Danh Mục Chính</h1>
+            </div>
+
+            <!-- Services Grid Section -->
+            <section class="services-section">
+                <div class="services-grid">
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-home"></i>
+                        </div>
+                        <h3>Trang chủ</h3>
+                        <p>Rio de Janeiro, Brazil</p>
+                        <a href="#" class="service-link"></a>
+                    </div>
+
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-search"></i>
+                        </div>
+                        <h3>Tra cứu phạt nguội</h3>
+                        <p>Rio de Janeiro, Brazil</p>
+                        <a href="violation.html" class="service-link"></a>
+                    </div>
+
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-route"></i>
+                        </div>
+                        <h3>Gợi ý tuyến đường</h3>
+                        <p>Rio de Janeiro, Brazil</p>
+                        <a href="#" class="service-link"></a>
+                    </div>
+
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-chart-bar"></i>
+                        </div>
+                        <h3>Thống kê thông tin xe</h3>
+                        <p>Rio de Janeiro, Brazil</p>
+                        <a href="violation.html" class="service-link"></a>
+                    </div>
+
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-video"></i>
+                        </div>
+                        <h3>Danh sách camera</h3>
+                        <p>Rio de Janeiro, Brazil</p>
+                        <a href="#" class="service-link"></a>
+                    </div>
+
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-traffic-light"></i>
+                        </div>
+                        <h3>Dự đoán ùn tắc</h3>
+                        <p>Rio de Janeiro, Brazil</p>
+                        <a href="#" class="service-link"></a>
+                    </div>
+
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-broadcast-tower"></i>
+                        </div>
+                        <h3>Tín hiệu & Điều khiển</h3>
+                        <p>Quản lý đèn tín hiệu và biển báo thông minh.</p>
+                        <a href="#" class="service-link"></a>
+                    </div>
+
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-car-crash"></i>
+                        </div>
+                        <h3>Cảnh báo tai nạn</h3>
+                        <p>Phát hiện và cảnh báo sớm các sự cố giao thông.</p>
+                        <a href="#" class="service-link"></a>
+                    </div>
+
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <h3>An ninh khu vực</h3>
+                        <p>Giám sát an ninh, phát hiện đối tượng khả nghi.</p>
+                        <a href="#" class="service-link"></a>
+                    </div>
+
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-cloud-sun-rain"></i>
+                        </div>
+                        <h3>Thời tiết & Môi trường</h3>
+                        <p>Cập nhật tình hình thời tiết ảnh hưởng giao thông.</p>
+                        <a href="#" class="service-link"></a>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section about">
+                    <div class="logo">
+                        <i class="fas fa-traffic-light"></i>
+                        <span>Traffic System</span>
+                    </div>
+                    <p>Hệ thống quản lý giao thông thông minh với công nghệ AI hiện đại, giúp tối ưu hóa luồng giao thông và đảm bảo an toàn cho người tham gia giao thông.</p>
+                    <div class="social-links">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-section links">
+                    <h4>Liên kết nhanh</h4>
+                    <ul>
+                        <li><a href="index.html">Trang chủ</a></li>
+                        <li><a href="chatbot-new.html">Gợi ý tuyến đường</a></li>
+                        <li><a href="violation.html">Tra cứu vi phạm</a></li>
+                        <li><a href="#">Thống kê giao thông</a></li>
+                        <li><a href="#">Hướng dẫn sử dụng</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section contact">
+                    <h4>Liên hệ</h4>
+                    <ul>
+                        <li>
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>123 Đường ABC, Quận XYZ, TP. Hà Nội</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-phone"></i>
+                            <span>+84 123 456 789</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-envelope"></i>
+                            <span>info@trafficsystem.vn</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-clock"></i>
+                            <span>24/7 - Luôn sẵn sàng hỗ trợ</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section newsletter">
+                    <h4>Nhận thông báo mới</h4>
+                    <p>Đăng ký để nhận thông tin về tình hình giao thông và các cập nhật mới nhất từ hệ thống.</p>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Nhập email của bạn..." required>
+                        <button type="submit">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <div class="container">
+                    <p>&copy; 2025 Traffic System. Tất cả quyền được bảo lưu. Được phát triển với <i class="fas fa-heart"></i> bởi đội ngũ AI Traffic Solutions.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

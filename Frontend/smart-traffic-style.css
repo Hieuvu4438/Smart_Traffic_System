@@ -1,0 +1,1141 @@
+/* Smart Traffic Light System Styles */
+
+/* Container and Layout Overrides */
+.container-fluid {
+    max-width: none;
+    padding: 0 15px;
+}
+
+.smart-traffic-main {
+    padding-top: 100px;
+    background: linear-gradient(135deg, var(--color-primary-bg) 0%, var(--color-bg) 100%);
+    min-height: 100vh;
+}
+
+/* Dashboard Header */
+.dashboard-header {
+    background: var(--color-surface);
+    border-radius: var(--radius-lg);
+    padding: 25px;
+    margin-bottom: 25px;
+    box-shadow: var(--shadow-md);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid var(--color-border);
+}
+
+.dashboard-header h1 {
+    color: var(--color-primary);
+    font-size: 2rem;
+    font-weight: 700;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.dashboard-stats {
+    display: flex;
+    gap: 30px;
+}
+
+.stat-item {
+    text-align: center;
+    padding: 15px 20px;
+    background: var(--color-primary-bg);
+    border-radius: var(--radius-md);
+    border: 2px solid var(--color-primary-lighter);
+}
+
+.stat-item.status-normal {
+    background: rgba(34, 197, 94, 0.1);
+    border-color: #22c55e;
+}
+
+.stat-value {
+    display: block;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--color-primary);
+}
+
+.stat-label {
+    display: block;
+    font-size: 0.875rem;
+    color: var(--color-text-secondary);
+    margin-top: 5px;
+}
+
+/* Dashboard Layout */
+.dashboard-layout {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 25px;
+    margin-bottom: 25px;
+}
+
+/* Left Panel - Road Simulation */
+.left-panel {
+    background: var(--color-surface);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    border: 1px solid var(--color-border);
+    overflow: hidden;
+}
+
+.simulation-container {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.simulation-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 25px;
+    border-bottom: 1px solid var(--color-border);
+    background: var(--color-primary-bg);
+}
+
+.simulation-header h3 {
+    color: var(--color-primary);
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.view-controls {
+    display: flex;
+    gap: 10px;
+}
+
+.view-btn {
+    padding: 8px 15px;
+    border: 2px solid var(--color-primary-lighter);
+    background: transparent;
+    color: var(--color-primary);
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    transition: var(--transition);
+    font-size: 0.875rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.view-btn:hover,
+.view-btn.active {
+    background: var(--color-primary);
+    color: white;
+}
+
+/* Road Map */
+.road-map {
+    flex: 1;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.road-svg {
+    width: 100%;
+    max-width: 800px;
+    height: 400px;
+    border: 2px solid var(--color-border);
+    border-radius: var(--radius-md);
+    background: var(--color-bg);
+}
+
+/* Traffic Lights */
+.traffic-light {
+    stroke: #374151;
+    stroke-width: 2;
+    opacity: 0.3;
+    transition: all 0.3s ease;
+}
+
+.traffic-light.active {
+    opacity: 1;
+}
+
+.red-light.active {
+    fill: #ef4444;
+}
+
+.yellow-light.active {
+    fill: #f59e0b;
+}
+
+.green-light.active {
+    fill: #22c55e;
+}
+
+/* Intersection Interactions */
+.intersection {
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.intersection:hover {
+    opacity: 0.8;
+}
+
+/* Vehicles */
+.vehicle {
+    transition: all 2s linear;
+}
+
+/* Density Indicators */
+.density-indicator.low {
+    fill: rgba(34, 197, 94, 0.3);
+}
+
+.density-indicator.medium {
+    fill: rgba(251, 191, 36, 0.3);
+}
+
+.density-indicator.high {
+    fill: rgba(239, 68, 68, 0.3);
+}
+
+/* Manual Controls */
+.manual-controls {
+    padding: 20px 25px;
+    border-top: 1px solid var(--color-border);
+    background: var(--color-bg);
+}
+
+.manual-controls h4 {
+    color: var(--color-primary);
+    margin: 0 0 15px 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.control-panels {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.intersection-control {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 15px;
+    background: var(--color-surface);
+    border-radius: var(--radius-md);
+    border: 1px solid var(--color-border);
+}
+
+.intersection-control span {
+    font-weight: 600;
+    color: var(--color-primary);
+    min-width: 70px;
+}
+
+.time-controls {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.control-btn {
+    width: 30px;
+    height: 30px;
+    border: 2px solid var(--color-primary-lighter);
+    background: var(--color-surface);
+    color: var(--color-primary);
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+}
+
+.control-btn:hover {
+    background: var(--color-primary);
+    color: white;
+}
+
+.time-display {
+    min-width: 35px;
+    text-align: center;
+    font-weight: 600;
+    color: var(--color-text);
+}
+
+/* Right Panel */
+.right-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Section Headers */
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    background: var(--color-primary-bg);
+    border-bottom: 1px solid var(--color-border);
+}
+
+.section-header h3 {
+    color: var(--color-primary);
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 1.1rem;
+}
+
+/* Camera Section */
+.camera-section {
+    background: var(--color-surface);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    border: 1px solid var(--color-border);
+    overflow: hidden;
+}
+
+.camera-controls {
+    display: flex;
+    gap: 5px;
+}
+
+.camera-grid {
+    padding: 20px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+
+.camera-feed {
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    transition: var(--transition);
+}
+
+.camera-feed:hover {
+    box-shadow: var(--shadow-md);
+    transform: translateY(-2px);
+}
+
+.camera-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 12px;
+    background: var(--color-primary-bg);
+    border-bottom: 1px solid var(--color-border);
+}
+
+.camera-label {
+    font-weight: 600;
+    color: var(--color-primary);
+    font-size: 0.875rem;
+}
+
+.live-indicator {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #ef4444;
+}
+
+.live-dot {
+    width: 6px;
+    height: 6px;
+    background: #ef4444;
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+}
+
+.camera-frame {
+    aspect-ratio: 16/9;
+    background: #1f2937;
+    position: relative;
+}
+
+.camera-placeholder {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #9ca3af;
+    text-align: center;
+}
+
+.camera-placeholder i {
+    font-size: 2rem;
+    display: block;
+    margin-bottom: 8px;
+}
+
+/* Traffic Info Section */
+.traffic-info-section {
+    background: var(--color-surface);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    border: 1px solid var(--color-border);
+    overflow: hidden;
+}
+
+.info-cards {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.info-card {
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+}
+
+.card-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 15px;
+    background: var(--color-primary-bg);
+    border-bottom: 1px solid var(--color-border);
+}
+
+.card-header i {
+    color: var(--color-primary);
+}
+
+.card-header span {
+    font-weight: 600;
+    color: var(--color-primary);
+}
+
+.card-content {
+    padding: 15px;
+}
+
+.density-item,
+.light-status {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 0;
+    border-bottom: 1px solid var(--color-border);
+}
+
+.density-item:last-child,
+.light-status:last-child {
+    border-bottom: none;
+}
+
+.location,
+.intersection {
+    font-weight: 500;
+    color: var(--color-text);
+}
+
+.value {
+    font-weight: 600;
+    padding: 4px 8px;
+    border-radius: var(--radius-sm);
+    font-size: 0.875rem;
+}
+
+.value.low {
+    background: rgba(34, 197, 94, 0.1);
+    color: #22c55e;
+}
+
+.value.medium {
+    background: rgba(251, 191, 36, 0.1);
+    color: #f59e0b;
+}
+
+.value.high {
+    background: rgba(239, 68, 68, 0.1);
+    color: #ef4444;
+}
+
+.status {
+    font-weight: 600;
+    padding: 4px 8px;
+    border-radius: var(--radius-sm);
+    font-size: 0.875rem;
+}
+
+.status.red {
+    background: rgba(239, 68, 68, 0.1);
+    color: #ef4444;
+}
+
+.status.green {
+    background: rgba(34, 197, 94, 0.1);
+    color: #22c55e;
+}
+
+.status.yellow {
+    background: rgba(251, 191, 36, 0.1);
+    color: #f59e0b;
+}
+
+/* Alerts Section */
+.alerts-section {
+    background: var(--color-surface);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    border: 1px solid var(--color-border);
+    overflow: hidden;
+}
+
+.alerts-list {
+    padding: 20px;
+}
+
+.alert-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 15px;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--color-border);
+    margin-bottom: 10px;
+    transition: var(--transition);
+}
+
+.alert-item:last-child {
+    margin-bottom: 0;
+}
+
+.alert-item:hover {
+    box-shadow: var(--shadow-md);
+}
+
+.alert-item.warning {
+    background: rgba(251, 191, 36, 0.05);
+    border-color: #fbbf24;
+}
+
+.alert-item.warning i {
+    color: #f59e0b;
+}
+
+.alert-item.info {
+    background: rgba(59, 130, 246, 0.05);
+    border-color: #60a5fa;
+}
+
+.alert-item.info i {
+    color: #3b82f6;
+}
+
+.alert-content {
+    flex: 1;
+}
+
+.alert-title {
+    display: block;
+    font-weight: 600;
+    color: var(--color-text);
+    margin-bottom: 4px;
+}
+
+.alert-text {
+    display: block;
+    font-size: 0.875rem;
+    color: var(--color-text-secondary);
+}
+
+.alert-time {
+    font-size: 0.75rem;
+    color: var(--color-text-light);
+}
+
+/* Bottom Panel */
+.bottom-panel {
+    background: var(--color-surface);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    border: 1px solid var(--color-border);
+    overflow: hidden;
+}
+
+/* Scenario Section */
+.scenario-section {
+    border-bottom: 1px solid var(--color-border);
+}
+
+.refresh-btn {
+    padding: 8px 15px;
+    border: 2px solid var(--color-primary-lighter);
+    background: var(--color-surface);
+    color: var(--color-primary);
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    transition: var(--transition);
+    font-size: 0.875rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.refresh-btn:hover {
+    background: var(--color-primary);
+    color: white;
+}
+
+.scenarios-grid {
+    padding: 25px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 20px;
+}
+
+.scenario-card {
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    transition: var(--transition);
+    background: var(--color-bg);
+}
+
+.scenario-card:hover {
+    box-shadow: var(--shadow-lg);
+    transform: translateY(-2px);
+}
+
+.scenario-card.recommended {
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 2px rgba(45, 90, 39, 0.1);
+}
+
+.scenario-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    background: var(--color-primary-bg);
+    border-bottom: 1px solid var(--color-border);
+}
+
+.scenario-header h4 {
+    color: var(--color-primary);
+    margin: 0;
+    font-size: 1rem;
+}
+
+.recommendation-badge {
+    background: var(--color-primary);
+    color: white;
+    padding: 4px 10px;
+    border-radius: var(--radius-full);
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+.scenario-content {
+    padding: 20px;
+}
+
+.scenario-changes {
+    margin-bottom: 15px;
+}
+
+.change-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 0;
+    border-bottom: 1px solid var(--color-border);
+}
+
+.change-item:last-child {
+    border-bottom: none;
+}
+
+.change-location {
+    font-weight: 500;
+    color: var(--color-text);
+}
+
+.change-action {
+    font-weight: 600;
+    color: var(--color-primary);
+    background: var(--color-primary-bg);
+    padding: 4px 8px;
+    border-radius: var(--radius-sm);
+    font-size: 0.875rem;
+}
+
+.scenario-prediction {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.prediction-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.875rem;
+}
+
+.text-green {
+    color: #22c55e;
+}
+
+.text-blue {
+    color: #3b82f6;
+}
+
+.text-orange {
+    color: #f59e0b;
+}
+
+.scenario-actions {
+    display: flex;
+    gap: 10px;
+    padding: 15px 20px;
+    background: var(--color-bg);
+    border-top: 1px solid var(--color-border);
+}
+
+.btn-apply,
+.btn-simulate {
+    flex: 1;
+    padding: 10px 15px;
+    border: none;
+    border-radius: var(--radius-md);
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.btn-apply {
+    background: var(--color-primary);
+    color: white;
+}
+
+.btn-apply:hover {
+    background: var(--color-primary-light);
+}
+
+.btn-simulate {
+    background: transparent;
+    color: var(--color-primary);
+    border: 2px solid var(--color-primary-lighter);
+}
+
+.btn-simulate:hover {
+    background: var(--color-primary-bg);
+}
+
+/* History Section */
+.history-section {
+    padding: 25px;
+}
+
+.history-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.history-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    background: var(--color-bg);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    transition: var(--transition);
+}
+
+.history-item:hover {
+    box-shadow: var(--shadow-md);
+}
+
+.history-info {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.history-scenario {
+    font-weight: 600;
+    color: var(--color-text);
+}
+
+.history-time {
+    font-size: 0.875rem;
+    color: var(--color-text-secondary);
+}
+
+.history-result {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 12px;
+    border-radius: var(--radius-sm);
+    font-size: 0.875rem;
+    font-weight: 500;
+}
+
+.history-result.success {
+    background: rgba(34, 197, 94, 0.1);
+    color: #22c55e;
+}
+
+.history-result.partial {
+    background: rgba(251, 191, 36, 0.1);
+    color: #f59e0b;
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+    .dashboard-layout {
+        grid-template-columns: 1fr;
+    }
+    
+    .scenarios-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .camera-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .dashboard-header {
+        flex-direction: column;
+        gap: 20px;
+        text-align: center;
+    }
+    
+    .dashboard-stats {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    
+    .control-panels {
+        justify-content: center;
+    }
+    
+    .intersection-control {
+        flex-direction: column;
+        text-align: center;
+        gap: 8px;
+    }
+    
+    .scenario-actions {
+        flex-direction: column;
+    }
+    
+    .history-item {
+        flex-direction: column;
+        gap: 10px;
+        text-align: center;
+    }
+}
+
+/* Animation for vehicles moving */
+@keyframes moveVehicle {
+    from {
+        transform: translateX(0);
+    }
+    to {
+        transform: translateX(100px);
+    }
+}
+
+.vehicle.moving {
+    animation: moveVehicle 3s linear infinite;
+}
+
+/* Intersection highlighting on hover */
+.intersection:hover rect {
+    fill: rgba(107, 144, 128, 0.7);
+}
+
+/* Loading state for scenarios */
+.scenarios-grid.loading {
+    opacity: 0.6;
+    pointer-events: none;
+}
+
+.scenarios-grid.loading::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 30px;
+    height: 30px;
+    border: 3px solid var(--color-border);
+    border-top: 3px solid var(--color-primary);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    transform: translate(-50%, -50%);
+}
+
+@keyframes spin {
+    0% { transform: translate(-50%, -50%) rotate(0deg); }
+    100% { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+/* Notification Styles */
+.notification {
+    font-family: var(--font-sans);
+    font-size: 0.875rem;
+    font-weight: 500;
+    border-radius: var(--radius-md);
+    backdrop-filter: blur(10px);
+}
+
+.notification i {
+    font-size: 1rem;
+}
+
+/* Tooltip Styles */
+.intersection-tooltip {
+    font-family: var(--font-sans);
+    line-height: 1.4;
+    box-shadow: var(--shadow-lg);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+}
+
+/* Selected Intersection */
+.intersection.selected rect {
+    stroke: var(--color-primary);
+    stroke-width: 4;
+    fill: rgba(45, 90, 39, 0.2);
+}
+
+/* Simulation Overlay */
+.simulation-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(5px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.simulation-modal {
+    background: var(--color-surface);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-lg);
+    width: 90%;
+    max-width: 600px;
+    max-height: 80vh;
+    overflow: hidden;
+    border: 1px solid var(--color-border);
+}
+
+.simulation-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 25px;
+    background: var(--color-primary-bg);
+    border-bottom: 1px solid var(--color-border);
+}
+
+.simulation-header h3 {
+    color: var(--color-primary);
+    margin: 0;
+}
+
+.close-btn {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    color: var(--color-text-secondary);
+    cursor: pointer;
+    padding: 5px;
+    border-radius: var(--radius-sm);
+    transition: var(--transition);
+}
+
+.close-btn:hover {
+    background: var(--color-border);
+    color: var(--color-text);
+}
+
+.simulation-content {
+    padding: 25px;
+}
+
+.simulation-chart {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.simulation-stats {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.simulation-stats .stat {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 15px;
+    background: var(--color-bg);
+    border-radius: var(--radius-md);
+    border: 1px solid var(--color-border);
+}
+
+.simulation-stats .label {
+    font-weight: 500;
+    color: var(--color-text);
+}
+
+.simulation-stats .value {
+    font-weight: 600;
+    color: var(--color-primary);
+    background: var(--color-primary-bg);
+    padding: 4px 8px;
+    border-radius: var(--radius-sm);
+}
+
+/* Camera Feed Expanded State */
+.camera-feed.expanded {
+    position: relative;
+    box-shadow: var(--shadow-lg);
+    border-color: var(--color-primary);
+}
+
+/* Improved responsive grid for cameras */
+@media (max-width: 1024px) {
+    .camera-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+        padding: 15px;
+    }
+}
+
+@media (max-width: 640px) {
+    .camera-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .scenarios-grid {
+        padding: 15px;
+    }
+    
+    .scenario-card {
+        margin-bottom: 15px;
+    }
+}
+
+/* Enhanced button states */
+.control-btn:active {
+    transform: scale(0.95);
+}
+
+.btn-apply:active,
+.btn-simulate:active {
+    transform: scale(0.98);
+}
+
+/* Traffic light glow effects */
+.red-light.active {
+    filter: drop-shadow(0 0 8px #ef4444);
+}
+
+.yellow-light.active {
+    filter: drop-shadow(0 0 8px #f59e0b);
+}
+
+.green-light.active {
+    filter: drop-shadow(0 0 8px #22c55e);
+}
+
+/* Loading states for cards */
+.info-card.loading {
+    opacity: 0.7;
+    pointer-events: none;
+}
+
+.info-card.loading::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 20px;
+    height: 20px;
+    border: 2px solid var(--color-border);
+    border-top: 2px solid var(--color-primary);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    transform: translate(-50%, -50%);
+}
+
+/* Smooth transitions for all interactive elements */
+.scenario-card,
+.camera-feed,
+.alert-item,
+.history-item,
+.intersection-control {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Focus states for accessibility */
+.control-btn:focus,
+.btn-apply:focus,
+.btn-simulate:focus,
+.view-btn:focus {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+}
+
+/* Print styles */
+@media print {
+    .smart-traffic-main {
+        background: white;
+    }
+    
+    .camera-section,
+    .scenario-section {
+        break-inside: avoid;
+    }
+    
+    .dashboard-layout {
+        grid-template-columns: 1fr;
+    }
+    
+    .scenarios-grid {
+        grid-template-columns: 1fr;
+    }
+}

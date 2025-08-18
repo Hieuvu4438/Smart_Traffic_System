@@ -1,0 +1,6 @@
+train: D:\JUPYTER NOTEBOOK\Traffic Detection using YOLO\bien so xe.v2i.yolov11\train\images
+val: D:\JUPYTER NOTEBOOK\Traffic Detection using YOLO\bien so xe.v2i.yolov11\valid\images
+test: D:\JUPYTER NOTEBOOK\Traffic Detection using YOLO\bien so xe.v2i.yolov11\test\images
+
+nc: 1
+names: ['biensoxehoi']

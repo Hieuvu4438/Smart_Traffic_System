@@ -1,0 +1,1715 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hệ thống Đèn Giao Thông Thông Minh</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="smart-traffic-style.css">
+    <link rel="stylesheet" href="advanced-traffic-style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-left">
+                <div class="logo">
+                    <i class="fas fa-traffic-light"></i>
+                    <span>Traffic System</span>
+                </div>
+                <nav class="nav-menu">
+                    <a href="index.html" class="nav-link">
+                        <i class="fas fa-home"></i>
+                        <span>Trang chủ</span>
+                    </a>
+                    <a href="smart-traffic-light.html" class="nav-link active">
+                        <i class="fas fa-road"></i>
+                        <span>Mô phỏng thông minh</span>
+                    </a>
+                    <a href="#" class="nav-link">
+                        <i class="fas fa-phone"></i>
+                        <span>Liên hệ</span>
+                    </a>
+                    <a href="#" class="nav-link">
+                        <i class="fas fa-info-circle"></i>
+                        <span>Giới thiệu</span>
+                    </a>
+                    <a href="violation.html" class="nav-link">
+                        <i class="fas fa-search"></i>
+                        <span>Tra cứu</span>
+                    </a>
+                </nav>
+            </div>
+            <div class="header-right">
+                <div class="notification-bell">
+                    <i class="fas fa-bell"></i>
+                    <span class="notification-badge">3</span>
+                </div>
+                <a href="#" class="btn-login">
+                    <i class="fas fa-sign-in-alt"></i>
+                    <span>Đăng nhập</span>
+                </a>
+                <div class="user-avatar">
+                    <img src="picture-icon-no-image-symbol-260nw-1572613234.webp" alt="User Avatar">
+                    <div class="online-status"></div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content smart-traffic-main">
+        <div class="container-fluid">
+            <!-- System Overview Header -->
+            <div class="system-dashboard">
+                <div class="dashboard-title">
+                    <div class="title-section" style="color: white;">
+                        <h1 style="color: white;"><i class="fas fa-traffic-light"></i> Hệ thống AI Tối ưu Giao Thông Thông Minh</h1>
+                        <p class="subtitle" style="color: white;">Phân tích và tối ưu hóa giao thông thời gian thực từ 5 ngã tư liên tiếp</p>
+                    </div>
+                    <div class="system-status-panel">
+                        <div class="status-card">
+                            <div class="status-indicator active">
+                                <div class="status-dot pulse"></div>
+                                <span>Hệ thống hoạt động</span>
+                            </div>
+                            <div class="ai-status">
+                                <i class="fas fa-brain"></i>
+                                <span>AI đang phân tích</span>
+                            </div>
+                        </div>
+                        <div class="update-info">
+                            <i class="fas fa-sync-alt"></i>
+                            <span>Cập nhật: <span id="lastUpdateTime">14:32:15</span></span>
+                            <div class="auto-refresh">
+                                <span class="refresh-dot"></span>
+                                <small>Tự động làm mới mỗi 5s</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Enhanced Quick Stats -->
+                <div class="performance-metrics">
+                    <div class="metric-card primary">
+                        <div class="metric-header">
+                            <div class="metric-icon">
+                                <i class="fas fa-car"></i>
+                            </div>
+                            <div class="metric-trend up">
+                                <i class="fas fa-arrow-up"></i>
+                                <span>+5%</span>
+                            </div>
+                        </div>
+                        <div class="metric-data">
+                            <span class="metric-value" id="totalVehicles">247</span>
+                            <span class="metric-label">Tổng phương tiện</span>
+                            <div class="metric-detail">
+                                <span>Xe máy: 158 | Ô tô: 89</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="metric-card success">
+                        <div class="metric-header">
+                            <div class="metric-icon">
+                                <i class="fas fa-tachometer-alt"></i>
+                            </div>
+                            <div class="metric-trend stable">
+                                <i class="fas fa-minus"></i>
+                                <span>0%</span>
+                            </div>
+                        </div>
+                        <div class="metric-data">
+                            <span class="metric-value" id="avgSpeed">28.5</span>
+                            <span class="metric-label">Tốc độ TB (km/h)</span>
+                            <div class="metric-detail">
+                                <span>Trong giới hạn cho phép</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="metric-card warning">
+                        <div class="metric-header">
+                            <div class="metric-icon">
+                                <i class="fas fa-stopwatch"></i>
+                            </div>
+                            <div class="metric-trend down">
+                                <i class="fas fa-arrow-down"></i>
+                                <span>-12%</span>
+                            </div>
+                        </div>
+                        <div class="metric-data">
+                            <span class="metric-value" id="waitingTime">38</span>
+                            <span class="metric-label">Thời gian chờ TB (s)</span>
+                            <div class="metric-detail">
+                                <span>Cải thiện từ 45s</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="metric-card info">
+                        <div class="metric-header">
+                            <div class="metric-icon">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                            <div class="metric-trend up">
+                                <i class="fas fa-arrow-up"></i>
+                                <span>+8%</span>
+                            </div>
+                        </div>
+                        <div class="metric-data">
+                            <span class="metric-value" id="efficiency">91%</span>
+                            <span class="metric-label">Hiệu suất tuyến</span>
+                            <div class="metric-detail">
+                                <span>Tối ưu bởi AI</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="metric-card danger">
+                        <div class="metric-header">
+                            <div class="metric-icon">
+                                <i class="fas fa-exclamation-triangle"></i>
+                            </div>
+                            <div class="metric-trend stable">
+                                <i class="fas fa-minus"></i>
+                                <span>0</span>
+                            </div>
+                        </div>
+                        <div class="metric-data">
+                            <span class="metric-value" id="violations">2</span>
+                            <span class="metric-label">Vi phạm phát hiện</span>
+                            <div class="metric-detail">
+                                <span>Trong 1 giờ qua</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Advanced Traffic Management Layout -->
+            <div class="traffic-management-grid">
+                
+                <!-- Central Road Simulation Panel -->
+                <div class="central-simulation">
+                    <div class="simulation-panel">
+                        <div class="panel-header">
+                            <div class="header-title">
+                                <h3><i class="fas fa-road"></i> Mô phỏng Tuyến đường Thực tế</h3>
+                                <div class="simulation-mode">
+                                    <span class="mode-indicator active">
+                                        <i class="fas fa-play"></i>
+                                        Mô phỏng trực tiếp
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="simulation-controls">
+                                <div class="view-options">
+                                    <button class="view-btn active" data-view="full">
+                                        <i class="fas fa-expand"></i> Toàn tuyến
+                                    </button>
+                                    <button class="view-btn" data-view="focus">
+                                        <i class="fas fa-search-plus"></i> Tập trung
+                                    </button>
+                                    <button class="view-btn" data-view="3d">
+                                        <i class="fas fa-cube"></i> 3D
+                                    </button>
+                                </div>
+                                <div class="simulation-actions">
+                                    <button class="action-btn" id="pauseSimulation">
+                                        <i class="fas fa-pause"></i>
+                                    </button>
+                                    <button class="action-btn" id="resetSimulation">
+                                        <i class="fas fa-undo"></i>
+                                    </button>
+                                    <button class="action-btn" id="exportData">
+                                        <i class="fas fa-download"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Main Simulation Display Area -->
+                        <div class="simulation-display-area">
+                            <!-- Video/Image Section - Top Half -->
+                            <div class="video-section">
+                                <div class="video-header">
+                                    <div class="video-title">
+                                        <h4><i class="fas fa-video"></i> Camera Tổng quan Tuyến đường</h4>
+                                        <span class="live-status">
+                                            <i class="fas fa-circle"></i>
+                                            LIVE
+                                        </span>
+                                    </div>
+                                    <div class="video-controls">
+                                        <button class="video-btn" title="Phóng to">
+                                            <i class="fas fa-expand"></i>
+                                        </button>
+                                        <button class="video-btn" title="Chụp ảnh">
+                                            <i class="fas fa-camera"></i>
+                                        </button>
+                                        <button class="video-btn" title="Quay video">
+                                            <i class="fas fa-record-vinyl"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="video-container">
+                                    <div class="video-placeholder">
+                                        <div class="placeholder-icon">
+                                            <i class="fas fa-play-circle"></i>
+                                        </div>
+                                        <h5>Kết nối Camera Tuyến đường</h5>
+                                        <p>Nhấn để kết nối camera giám sát toàn tuyến</p>
+                                        <button class="connect-camera-btn">
+                                            <i class="fas fa-wifi"></i>
+                                            Kết nối Camera
+                                        </button>
+                                    </div>
+                                    <!-- Overlays for traffic markers -->
+                                    <div class="traffic-overlay">
+                                        <div class="intersection-point" style="top: 20%; left: 15%;" data-intersection="1">
+                                            <div class="point-marker red-light">
+                                                <span>1</span>
+                                            </div>
+                                            <div class="point-tooltip">
+                                                <strong>Ngã tư 1</strong>
+                                                <div>Đèn đỏ - 25s</div>
+                                                <div>23 phương tiện</div>
+                                            </div>
+                                        </div>
+                                        <div class="intersection-point" style="top: 30%; left: 35%;" data-intersection="2">
+                                            <div class="point-marker green-light">
+                                                <span>2</span>
+                                            </div>
+                                            <div class="point-tooltip">
+                                                <strong>Ngã tư 2</strong>
+                                                <div>Đèn xanh - 18s</div>
+                                                <div>19 phương tiện</div>
+                                            </div>
+                                        </div>
+                                        <div class="intersection-point" style="top: 40%; left: 55%;" data-intersection="3">
+                                            <div class="point-marker yellow-light">
+                                                <span>3</span>
+                                            </div>
+                                            <div class="point-tooltip">
+                                                <strong>Ngã tư 3</strong>
+                                                <div>Đèn vàng - 3s</div>
+                                                <div>45 phương tiện - Tắc nghẽn!</div>
+                                            </div>
+                                        </div>
+                                        <div class="intersection-point" style="top: 50%; left: 75%;" data-intersection="4">
+                                            <div class="point-marker red-light">
+                                                <span>4</span>
+                                            </div>
+                                            <div class="point-tooltip">
+                                                <strong>Ngã tư 4</strong>
+                                                <div>Đèn đỏ - 32s</div>
+                                                <div>12 phương tiện</div>
+                                            </div>
+                                        </div>
+                                        <div class="intersection-point" style="top: 60%; left: 85%;" data-intersection="5">
+                                            <div class="point-marker green-light">
+                                                <span>5</span>
+                                            </div>
+                                            <div class="point-tooltip">
+                                                <strong>Ngã tư 5</strong>
+                                                <div>Đèn xanh - 15s</div>
+                                                <div>16 phương tiện</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Statistics & Decorative Section - Bottom Half -->
+                            <div class="statistics-section">
+                                <div class="stats-grid">
+                                    <!-- Real-time Traffic Flow Chart -->
+                                    <div class="stat-card traffic-flow">
+                                        <div class="card-header">
+                                            <h5><i class="fas fa-chart-line"></i> Lưu lượng Thời gian thực</h5>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="flow-chart">
+                                                <div class="chart-bars">
+                                                    <div class="bar" style="height: 60%;" data-value="156">
+                                                        <span class="bar-label">NT1</span>
+                                                    </div>
+                                                    <div class="bar" style="height: 45%;" data-value="118">
+                                                        <span class="bar-label">NT2</span>
+                                                    </div>
+                                                    <div class="bar" style="height: 90%;" data-value="245">
+                                                        <span class="bar-label">NT3</span>
+                                                    </div>
+                                                    <div class="bar" style="height: 30%;" data-value="78">
+                                                        <span class="bar-label">NT4</span>
+                                                    </div>
+                                                    <div class="bar" style="height: 40%;" data-value="98">
+                                                        <span class="bar-label">NT5</span>
+                                                    </div>
+                                                </div>
+                                                <div class="chart-legend">
+                                                    <span>Xe/phút trong 5 phút qua</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- AI Analysis Status -->
+                                    <div class="stat-card ai-analysis">
+                                        <div class="card-header">
+                                            <h5><i class="fas fa-brain"></i> Phân tích AI</h5>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="ai-status-grid">
+                                                <div class="ai-item">
+                                                    <div class="ai-icon processing">
+                                                        <i class="fas fa-cog fa-spin"></i>
+                                                    </div>
+                                                    <div class="ai-info">
+                                                        <span class="ai-title">Tối ưu hóa</span>
+                                                        <span class="ai-status">Đang xử lý...</span>
+                                                    </div>
+                                                </div>
+                                                <div class="ai-item">
+                                                    <div class="ai-icon success">
+                                                        <i class="fas fa-check-circle"></i>
+                                                    </div>
+                                                    <div class="ai-info">
+                                                        <span class="ai-title">Phát hiện</span>
+                                                        <span class="ai-status">Hoạt động</span>
+                                                    </div>
+                                                </div>
+                                                <div class="ai-item">
+                                                    <div class="ai-icon warning">
+                                                        <i class="fas fa-exclamation-triangle"></i>
+                                                    </div>
+                                                    <div class="ai-info">
+                                                        <span class="ai-title">Cảnh báo</span>
+                                                        <span class="ai-status">Ngã tư 3 tắc</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- System Performance -->
+                                    <div class="stat-card performance">
+                                        <div class="card-header">
+                                            <h5><i class="fas fa-tachometer-alt"></i> Hiệu suất Hệ thống</h5>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="performance-metrics">
+                                                <div class="metric-circle">
+                                                    <div class="circle-progress" data-percentage="91">
+                                                        <span class="percentage">91%</span>
+                                                    </div>
+                                                    <span class="metric-label">Hiệu suất tổng</span>
+                                                </div>
+                                                <div class="metric-list">
+                                                    <div class="metric-row">
+                                                        <span class="metric-name">CPU:</span>
+                                                        <div class="metric-bar">
+                                                            <div class="bar-fill" style="width: 65%;"></div>
+                                                        </div>
+                                                        <span class="metric-value">65%</span>
+                                                    </div>
+                                                    <div class="metric-row">
+                                                        <span class="metric-name">RAM:</span>
+                                                        <div class="metric-bar">
+                                                            <div class="bar-fill" style="width: 45%;"></div>
+                                                        </div>
+                                                        <span class="metric-value">45%</span>
+                                                    </div>
+                                                    <div class="metric-row">
+                                                        <span class="metric-name">Mạng:</span>
+                                                        <div class="metric-bar">
+                                                            <div class="bar-fill" style="width: 80%;"></div>
+                                                        </div>
+                                                        <span class="metric-value">80%</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Quick Actions -->
+                                    
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Advanced Control Panel -->
+                        <div class="simulation-controls-panel">
+                            <div class="control-section">
+                                <h4><i class="fas fa-sliders-h"></i> Điều khiển Chi tiết</h4>
+                                <div class="control-grid">
+                                    <div class="intersection-control-advanced" data-intersection="1">
+                                        <div class="control-header">
+                                            <span class="intersection-name">Ngã tư 1</span>
+                                            <div class="control-status">
+                                                <span class="status-dot red"></span>
+                                                <span class="current-state">Đỏ</span>
+                                            </div>
+                                        </div>
+                                        <div class="control-body">
+                                            <div class="time-adjustment">
+                                                <button class="ctrl-btn decrease" data-action="decrease" data-intersection="1">
+                                                    <i class="fas fa-minus"></i>
+                                                </button>
+                                                <div class="time-display-advanced">
+                                                    <span class="time-value">25</span>
+                                                    <span class="time-unit">s</span>
+                                                </div>
+                                                <button class="ctrl-btn increase" data-action="increase" data-intersection="1">
+                                                    <i class="fas fa-plus"></i>
+                                                </button>
+                                            </div>
+                                            <div class="quick-actions">
+                                                <button class="quick-btn" data-action="emergency" data-intersection="1">
+                                                    <i class="fas fa-exclamation"></i>
+                                                    Khẩn cấp
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="intersection-control-advanced" data-intersection="2">
+                                        <div class="control-header">
+                                            <span class="intersection-name">Ngã tư 2</span>
+                                            <div class="control-status">
+                                                <span class="status-dot green"></span>
+                                                <span class="current-state">Xanh</span>
+                                            </div>
+                                        </div>
+                                        <div class="control-body">
+                                            <div class="time-adjustment">
+                                                <button class="ctrl-btn decrease" data-action="decrease" data-intersection="2">
+                                                    <i class="fas fa-minus"></i>
+                                                </button>
+                                                <div class="time-display-advanced">
+                                                    <span class="time-value">18</span>
+                                                    <span class="time-unit">s</span>
+                                                </div>
+                                                <button class="ctrl-btn increase" data-action="increase" data-intersection="2">
+                                                    <i class="fas fa-plus"></i>
+                                                </button>
+                                            </div>
+                                            <div class="quick-actions">
+                                                <button class="quick-btn" data-action="emergency" data-intersection="2">
+                                                    <i class="fas fa-exclamation"></i>
+                                                    Khẩn cấp
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="intersection-control-advanced" data-intersection="3">
+                                        <div class="control-header">
+                                            <span class="intersection-name">Ngã tư 3</span>
+                                            <div class="control-status">
+                                                <span class="status-dot yellow"></span>
+                                                <span class="current-state">Vàng</span>
+                                            </div>
+                                        </div>
+                                        <div class="control-body">
+                                            <div class="time-adjustment">
+                                                <button class="ctrl-btn decrease" data-action="decrease" data-intersection="3">
+                                                    <i class="fas fa-minus"></i>
+                                                </button>
+                                                <div class="time-display-advanced">
+                                                    <span class="time-value">3</span>
+                                                    <span class="time-unit">s</span>
+                                                </div>
+                                                <button class="ctrl-btn increase" data-action="increase" data-intersection="3">
+                                                    <i class="fas fa-plus"></i>
+                                                </button>
+                                            </div>
+                                            <div class="quick-actions">
+                                                <button class="quick-btn" data-action="emergency" data-intersection="3">
+                                                    <i class="fas fa-exclamation"></i>
+                                                    Khẩn cấp
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="intersection-control-advanced" data-intersection="4">
+                                        <div class="control-header">
+                                            <span class="intersection-name">Ngã tư 4</span>
+                                            <div class="control-status">
+                                                <span class="status-dot red"></span>
+                                                <span class="current-state">Đỏ</span>
+                                            </div>
+                                        </div>
+                                        <div class="control-body">
+                                            <div class="time-adjustment">
+                                                <button class="ctrl-btn decrease" data-action="decrease" data-intersection="4">
+                                                    <i class="fas fa-minus"></i>
+                                                </button>
+                                                <div class="time-display-advanced">
+                                                    <span class="time-value">32</span>
+                                                    <span class="time-unit">s</span>
+                                                </div>
+                                                <button class="ctrl-btn increase" data-action="increase" data-intersection="4">
+                                                    <i class="fas fa-plus"></i>
+                                                </button>
+                                            </div>
+                                            <div class="quick-actions">
+                                                <button class="quick-btn" data-action="emergency" data-intersection="4">
+                                                    <i class="fas fa-exclamation"></i>
+                                                    Khẩn cấp
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="intersection-control-advanced" data-intersection="5">
+                                        <div class="control-header">
+                                            <span class="intersection-name">Ngã tư 5</span>
+                                            <div class="control-status">
+                                                <span class="status-dot green"></span>
+                                                <span class="current-state">Xanh</span>
+                                            </div>
+                                        </div>
+                                        <div class="control-body">
+                                            <div class="time-adjustment">
+                                                <button class="ctrl-btn decrease" data-action="decrease" data-intersection="5">
+                                                    <i class="fas fa-minus"></i>
+                                                </button>
+                                                <div class="time-display-advanced">
+                                                    <span class="time-value">15</span>
+                                                    <span class="time-unit">s</span>
+                                                </div>
+                                                <button class="ctrl-btn increase" data-action="increase" data-intersection="5">
+                                                    <i class="fas fa-plus"></i>
+                                                </button>
+                                            </div>
+                                            <div class="quick-actions">
+                                                <button class="quick-btn" data-action="emergency" data-intersection="5">
+                                                    <i class="fas fa-exclamation"></i>
+                                                    Khẩn cấp
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="global-controls">
+                                <button class="global-btn optimize" id="optimizeAll">
+                                    <i class="fas fa-magic"></i>
+                                    Tối ưu toàn tuyến
+                                </button>
+                                <button class="global-btn emergency" id="emergencyMode">
+                                    <i class="fas fa-exclamation-triangle"></i>
+                                    Chế độ khẩn cấp
+                                </button>
+                                <button class="global-btn sync" id="syncAll">
+                                    <i class="fas fa-sync"></i>
+                                    Đồng bộ tất cả
+                                </button>
+                            </div>
+                            
+                            <!-- Additional Information Section -->
+                            <!-- ...existing code... -->
+                            <!-- Additional Information Section -->
+                            <div class="additional-info-section">
+                                <!-- Top - Enhanced Media Display Panel -->
+                                <div class="media-display-panel">
+                                    <div class="media-header">
+                                        <h4><i class="fas fa-camera-retro"></i> Trung tâm Phương tiện Đa phương tiện</h4>
+                                        <div class="media-controls">
+                                            <button class="media-control-btn" title="Thư viện ảnh">
+                                                <i class="fas fa-images"></i>
+                                                Thư viện
+                                            </button>
+                                            <button class="media-control-btn" title="Chụp ảnh mới">
+                                                <i class="fas fa-camera"></i>
+                                                Chụp ảnh
+                                            </button>
+                                            <button class="media-control-btn" title="Quay video">
+                                                <i class="fas fa-video"></i>
+                                                Video
+                                            </button>
+                                            <button class="media-control-btn" title="Tải lên">
+                                                <i class="fas fa-upload"></i>
+                                                Upload
+                                            </button>
+                                            <button class="media-control-btn" title="Cài đặt">
+                                                <i class="fas fa-cog"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div class="media-content">
+                                        <div class="media-placeholder">
+                                            <div class="placeholder-wrapper">
+                                                <i class="fas fa-image"></i>
+                                                <h5>Trung tâm Phương tiện Giao thông</h5>
+                                                <p>Hiển thị ảnh/video từ camera AI hoặc tải lên phương tiện tùy chỉnh<br>
+                                                Hỗ trợ định dạng: JPG, PNG, MP4, AVI</p>
+                                                
+                                                <div class="upload-progress" style="display: none;">
+                                                    <div class="upload-progress-bar" style="width: 0%;"></div>
+                                                </div>
+                                            </div>
+                                            <!-- Media stats overlay -->
+                                            <div class="media-stats">
+                                                <div class="media-stat-item">
+                                                    <i class="fas fa-image"></i>
+                                                    <span>156 ảnh</span>
+                                                </div>
+                                                <div class="media-stat-item">
+                                                    <i class="fas fa-video"></i>
+                                                    <span>23 video</span>
+                                                </div>
+                                                <div class="media-stat-item">
+                                                    <i class="fas fa-hdd"></i>
+                                                    <span>2.4GB</span>
+                                                </div>
+                                                <div class="media-stat-item">
+                                                    <i class="fas fa-clock"></i>
+                                                    <span>Cập nhật: 14:32</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- Enhanced image gallery -->
+                                        <div class="image-gallery">
+                                            <div class="gallery-item active">
+                                                <div class="image-preview">
+                                                    <i class="fas fa-road"></i>
+                                                    <div>
+                                                        <span style="display: block; font-weight: 600;">Tuyến đường chính</span>
+                                                        <small style="color: rgba(255,255,255,0.6);">Ảnh toàn cảnh - 4K</small>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="gallery-item">
+                                                <div class="image-preview">
+                                                    <i class="fas fa-traffic-light"></i>
+                                                    <div>
+                                                        <span style="display: block; font-weight: 600;">Ngã tư trọng điểm</span>
+                                                        <small style="color: rgba(255,255,255,0.6);">Video thời gian thực</small>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="gallery-item">
+                                                <div class="image-preview">
+                                                    <i class="fas fa-car"></i>
+                                                    <div>
+                                                        <span style="display: block; font-weight: 600;">Phân tích xe cộ</span>
+                                                        <small style="color: rgba(255,255,255,0.6);">AI Detection - HD</small>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="gallery-item">
+                                                <div class="image-preview">
+                                                    <i class="fas fa-chart-line"></i>
+                                                    <div>
+                                                        <span style="display: block; font-weight: 600;">Báo cáo thống kê</span>
+                                                        <small style="color: rgba(255,255,255,0.6);">Infographic - PDF</small>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="gallery-item">
+                                                <div class="image-preview">
+                                                    <i class="fas fa-exclamation-triangle"></i>
+                                                    <div>
+                                                        <span style="display: block; font-weight: 600;">Sự cố giao thông</span>
+                                                        <small style="color: rgba(255,255,255,0.6);">Ảnh vi phạm - JPG</small>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="gallery-item">
+                                                <div class="image-preview">
+                                                    <i class="fas fa-map"></i>
+                                                    <div>
+                                                        <span style="display: block; font-weight: 600;">Bản đồ nhiệt</span>
+                                                        <small style="color: rgba(255,255,255,0.6);">Heatmap - SVG</small>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Bottom - Enhanced System Information & Tools -->
+                                
+                            </div>
+<!-- ...existing code... -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Side Information Panel -->
+                <div class="information-sidebar">
+                    <!-- Live Camera Feeds -->
+                    <div class="camera-monitoring-section">
+                        <div class="section-header-advanced">
+                            <div class="header-content">
+                                <h3><i class="fas fa-video"></i> Camera Giám sát AI</h3>
+                                <div class="camera-status">
+                                    <span class="status-badge active">
+                                        <i class="fas fa-circle"></i>
+                                        5/5 hoạt động
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="camera-controls-advanced">
+                                <button class="control-btn-modern" id="expandAllCameras" title="Mở rộng tất cả">
+                                    <i class="fas fa-expand-arrows-alt"></i>
+                                </button>
+                                <button class="control-btn-modern" id="gridView" title="Xem dạng lưới">
+                                    <i class="fas fa-th"></i>
+                                </button>
+                                <button class="control-btn-modern" id="focusView" title="Chế độ tập trung">
+                                    <i class="fas fa-crosshairs"></i>
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="camera-grid-advanced">
+                            <div class="camera-feed-modern" data-camera="1" data-intersection="1">
+                                <div class="camera-header-modern">
+                                    <div class="camera-info">
+                                        <span class="camera-label">Ngã tư 1 - Camera AI</span>
+                                        <div class="detection-status">
+                                            <span class="detection-count">23 xe</span>
+                                        </div>
+                                    </div>
+                                    <div class="camera-indicators">
+                                        <div class="live-indicator-modern">
+                                            <span class="live-dot-modern"></span>
+                                            <span>LIVE</span>
+                                        </div>
+                                        <div class="ai-indicator">
+                                            <i class="fas fa-brain"></i>
+                                            <span>AI</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="camera-frame-modern">
+                                    <div class="camera-feed-content">
+                                        <div class="detection-overlay">
+                                            
+                                            
+                                        </div>
+                                        <div class="camera-placeholder-modern">
+                                            <i class="fas fa-video"></i>
+                                            <span>Camera 1 - Phát hiện thông minh</span>
+                                        </div>
+                                    </div>
+                                    <div class="camera-metrics">
+                                        <div class="metric-item">
+                                            <span class="metric-icon"><i class="fas fa-car"></i></span>
+                                            <span class="metric-value">23</span>
+                                        </div>
+                                        <div class="metric-item">
+                                            <span class="metric-icon"><i class="fas fa-motorcycle"></i></span>
+                                            <span class="metric-value">18</span>
+                                        </div>
+                                        <div class="metric-item">
+                                            <span class="metric-icon"><i class="fas fa-truck"></i></span>
+                                            <span class="metric-value">5</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="camera-feed-modern" data-camera="2" data-intersection="2">
+                                <div class="camera-header-modern">
+                                    <div class="camera-info">
+                                        <span class="camera-label">Ngã tư 2 - Camera AI</span>
+                                        <div class="detection-status">
+                                            <span class="detection-count">19 xe</span>
+                                        </div>
+                                    </div>
+                                    <div class="camera-indicators">
+                                        <div class="live-indicator-modern">
+                                            <span class="live-dot-modern"></span>
+                                            <span>LIVE</span>
+                                        </div>
+                                        <div class="ai-indicator">
+                                            <i class="fas fa-brain"></i>
+                                            <span>AI</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="camera-frame-modern">
+                                    <div class="camera-feed-content">
+                                        <div class="detection-overlay">
+                                            
+                                        </div>
+                                        <div class="camera-placeholder-modern">
+                                            <i class="fas fa-video"></i>
+                                            <span>Camera 2 - Phát hiện thông minh</span>
+                                        </div>
+                                    </div>
+                                    <div class="camera-metrics">
+                                        <div class="metric-item">
+                                            <span class="metric-icon"><i class="fas fa-car"></i></span>
+                                            <span class="metric-value">15</span>
+                                        </div>
+                                        <div class="metric-item">
+                                            <span class="metric-icon"><i class="fas fa-motorcycle"></i></span>
+                                            <span class="metric-value">12</span>
+                                        </div>
+                                        <div class="metric-item">
+                                            <span class="metric-icon"><i class="fas fa-truck"></i></span>
+                                            <span class="metric-value">3</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="camera-feed-modern" data-camera="3" data-intersection="3">
+                                <div class="camera-header-modern">
+                                    <div class="camera-info">
+                                        <span class="camera-label">Ngã tư 3 - Camera AI</span>
+                                        <div class="detection-status congested">
+                                            <span class="detection-count">45 xe</span>
+                                        </div>
+                                    </div>
+                                    <div class="camera-indicators">
+                                        <div class="live-indicator-modern">
+                                            <span class="live-dot-modern"></span>
+                                            <span>LIVE</span>
+                                        </div>
+                                        <div class="ai-indicator alert">
+                                            <i class="fas fa-brain"></i>
+                                            <span>AI</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="camera-frame-modern">
+                                    <div class="camera-feed-content">
+                                        <div class="detection-overlay">
+                                            <div class="vehicle-detection" style="top: 20%; left: 20%; width: 60%; height: 60%;">
+                                                <div class="detection-box congestion">
+                                                    <span class="detection-label">Tắc nghẽn phát hiện</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="camera-placeholder-modern">
+                                            <i class="fas fa-video"></i>
+                                            <span>Camera 3 - Phát hiện tắc nghẽn</span>
+                                        </div>
+                                    </div>
+                                    <div class="camera-metrics">
+                                        <div class="metric-item">
+                                            <span class="metric-icon"><i class="fas fa-car"></i></span>
+                                            <span class="metric-value">32</span>
+                                        </div>
+                                        <div class="metric-item">
+                                            <span class="metric-icon"><i class="fas fa-motorcycle"></i></span>
+                                            <span class="metric-value">28</span>
+                                        </div>
+                                        <div class="metric-item">
+                                            <span class="metric-icon"><i class="fas fa-truck"></i></span>
+                                            <span class="metric-value">8</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="camera-feed-modern" data-camera="4" data-intersection="4">
+                                <div class="camera-header-modern">
+                                    <div class="camera-info">
+                                        <span class="camera-label">Ngã tư 4 - Camera AI</span>
+                                        <div class="detection-status">
+                                            <span class="detection-count">12 xe</span>
+                                        </div>
+                                    </div>
+                                    <div class="camera-indicators">
+                                        <div class="live-indicator-modern">
+                                            <span class="live-dot-modern"></span>
+                                            <span>LIVE</span>
+                                        </div>
+                                        <div class="ai-indicator">
+                                            <i class="fas fa-brain"></i>
+                                            <span>AI</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="camera-frame-modern">
+                                    <div class="camera-feed-content">
+                                        <div class="camera-placeholder-modern">
+                                            <i class="fas fa-video"></i>
+                                            <span>Camera 4 - Phát hiện thông minh</span>
+                                        </div>
+                                    </div>
+                                    <div class="camera-metrics">
+                                        <div class="metric-item">
+                                            <span class="metric-icon"><i class="fas fa-car"></i></span>
+                                            <span class="metric-value">8</span>
+                                        </div>
+                                        <div class="metric-item">
+                                            <span class="metric-icon"><i class="fas fa-motorcycle"></i></span>
+                                            <span class="metric-value">6</span>
+                                        </div>
+                                        <div class="metric-item">
+                                            <span class="metric-icon"><i class="fas fa-truck"></i></span>
+                                            <span class="metric-value">2</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="camera-feed-modern" data-camera="5" data-intersection="5">
+                                <div class="camera-header-modern">
+                                    <div class="camera-info">
+                                        <span class="camera-label">Ngã tư 5 - Camera AI</span>
+                                        <div class="detection-status">
+                                            <span class="detection-count">16 xe</span>
+                                        </div>
+                                    </div>
+                                    <div class="camera-indicators">
+                                        <div class="live-indicator-modern">
+                                            <span class="live-dot-modern"></span>
+                                            <span>LIVE</span>
+                                        </div>
+                                        <div class="ai-indicator">
+                                            <i class="fas fa-brain"></i>
+                                            <span>AI</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="camera-frame-modern">
+                                    <div class="camera-feed-content">
+                                        <div class="camera-placeholder-modern">
+                                            <i class="fas fa-video"></i>
+                                            <span>Camera 5 - Phát hiện thông minh</span>
+                                        </div>
+                                    </div>
+                                    <div class="camera-metrics">
+                                        <div class="metric-item">
+                                            <span class="metric-icon"><i class="fas fa-car"></i></span>
+                                            <span class="metric-value">11</span>
+                                        </div>
+                                        <div class="metric-item">
+                                            <span class="metric-icon"><i class="fas fa-motorcycle"></i></span>
+                                            <span class="metric-value">8</span>
+                                        </div>
+                                        <div class="metric-item">
+                                            <span class="metric-icon"><i class="fas fa-truck"></i></span>
+                                            <span class="metric-value">1</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Traffic Analytics -->
+                    <div class="traffic-analytics-section">
+                        <div class="section-header-advanced">
+                            <h3><i class="fas fa-chart-line"></i> Phân tích Giao thông</h3>
+                            <div class="analytics-controls">
+                                <button class="control-btn-modern" data-timeframe="realtime">
+                                    <i class="fas fa-clock"></i>
+                                    Thời gian thực
+                                </button>
+                                <button class="control-btn-modern" data-timeframe="hourly">
+                                    <i class="fas fa-chart-bar"></i>
+                                    Theo giờ
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="analytics-content">
+                            <div class="traffic-flow-analysis">
+                                <div class="analysis-card">
+                                    <div class="card-header-modern">
+                                        <h4><i class="fas fa-road"></i> Mật độ từng đoạn</h4>
+                                    </div>
+                                    <div class="card-content-modern">
+                                        <div class="density-analysis-item">
+                                            <div class="segment-info">
+                                                <span class="segment-name">Đoạn 1-2</span>
+                                                <span class="segment-distance">800m</span>
+                                            </div>
+                                            <div class="density-visualization">
+                                                <div class="density-bar">
+                                                    <div class="density-fill low" style="width: 30%;"></div>
+                                                </div>
+                                                <span class="density-value">15 xe/km</span>
+                                            </div>
+                                            <div class="density-status">
+                                                <span class="status-badge smooth">Thông thoáng</span>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="density-analysis-item">
+                                            <div class="segment-info">
+                                                <span class="segment-name">Đoạn 2-3</span>
+                                                <span class="segment-distance">750m</span>
+                                            </div>
+                                            <div class="density-visualization">
+                                                <div class="density-bar">
+                                                    <div class="density-fill medium" style="width: 60%;"></div>
+                                                </div>
+                                                <span class="density-value">28 xe/km</span>
+                                            </div>
+                                            <div class="density-status">
+                                                <span class="status-badge moderate">Vừa phải</span>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="density-analysis-item">
+                                            <div class="segment-info">
+                                                <span class="segment-name">Đoạn 3-4</span>
+                                                <span class="segment-distance">900m</span>
+                                            </div>
+                                            <div class="density-visualization">
+                                                <div class="density-bar">
+                                                    <div class="density-fill high" style="width: 85%;"></div>
+                                                </div>
+                                                <span class="density-value">42 xe/km</span>
+                                            </div>
+                                            <div class="density-status">
+                                                <span class="status-badge congested">Tắc nghẽn</span>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="density-analysis-item">
+                                            <div class="segment-info">
+                                                <span class="segment-name">Đoạn 4-5</span>
+                                                <span class="segment-distance">650m</span>
+                                            </div>
+                                            <div class="density-visualization">
+                                                <div class="density-bar">
+                                                    <div class="density-fill low" style="width: 25%;"></div>
+                                                </div>
+                                                <span class="density-value">12 xe/km</span>
+                                            </div>
+                                            <div class="density-status">
+                                                <span class="status-badge smooth">Thông thoáng</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="analysis-card">
+                                    <div class="card-header-modern">
+                                        <h4><i class="fas fa-traffic-light"></i> Trạng thái đèn giao thông</h4>
+                                    </div>
+                                    <div class="card-content-modern">
+                                        <div class="traffic-light-status-grid">
+                                            <div class="light-status-item" data-intersection="1">
+                                                <div class="intersection-indicator">
+                                                    <span class="intersection-number">1</span>
+                                                    <div class="light-visual">
+                                                        <div class="light red active"></div>
+                                                        <div class="light yellow"></div>
+                                                        <div class="light green"></div>
+                                                    </div>
+                                                </div>
+                                                <div class="status-details">
+                                                    <span class="current-state">Đèn đỏ</span>
+                                                    <span class="time-remaining">25s còn lại</span>
+                                                    <div class="next-state">
+                                                        <i class="fas fa-arrow-right"></i>
+                                                        <span>Xanh trong 25s</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="light-status-item" data-intersection="2">
+                                                <div class="intersection-indicator">
+                                                    <span class="intersection-number">2</span>
+                                                    <div class="light-visual">
+                                                        <div class="light red"></div>
+                                                        <div class="light yellow"></div>
+                                                        <div class="light green active"></div>
+                                                    </div>
+                                                </div>
+                                                <div class="status-details">
+                                                    <span class="current-state">Đèn xanh</span>
+                                                    <span class="time-remaining">18s còn lại</span>
+                                                    <div class="next-state">
+                                                        <i class="fas fa-arrow-right"></i>
+                                                        <span>Vàng trong 18s</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="light-status-item" data-intersection="3">
+                                                <div class="intersection-indicator">
+                                                    <span class="intersection-number">3</span>
+                                                    <div class="light-visual">
+                                                        <div class="light red"></div>
+                                                        <div class="light yellow active"></div>
+                                                        <div class="light green"></div>
+                                                    </div>
+                                                </div>
+                                                <div class="status-details">
+                                                    <span class="current-state">Đèn vàng</span>
+                                                    <span class="time-remaining">3s còn lại</span>
+                                                    <div class="next-state">
+                                                        <i class="fas fa-arrow-right"></i>
+                                                        <span>Đỏ trong 3s</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="light-status-item" data-intersection="4">
+                                                <div class="intersection-indicator">
+                                                    <span class="intersection-number">4</span>
+                                                    <div class="light-visual">
+                                                        <div class="light red active"></div>
+                                                        <div class="light yellow"></div>
+                                                        <div class="light green"></div>
+                                                    </div>
+                                                </div>
+                                                <div class="status-details">
+                                                    <span class="current-state">Đèn đỏ</span>
+                                                    <span class="time-remaining">32s còn lại</span>
+                                                    <div class="next-state">
+                                                        <i class="fas fa-arrow-right"></i>
+                                                        <span>Xanh trong 32s</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="light-status-item" data-intersection="5">
+                                                <div class="intersection-indicator">
+                                                    <span class="intersection-number">5</span>
+                                                    <div class="light-visual">
+                                                        <div class="light red"></div>
+                                                        <div class="light yellow"></div>
+                                                        <div class="light green active"></div>
+                                                    </div>
+                                                </div>
+                                                <div class="status-details">
+                                                    <span class="current-state">Đèn xanh</span>
+                                                    <span class="time-remaining">15s còn lại</span>
+                                                    <div class="next-state">
+                                                        <i class="fas fa-arrow-right"></i>
+                                                        <span>Vàng trong 15s</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Real-time Alerts -->
+                    <div class="alerts-monitoring-section">
+                        <div class="section-header-advanced">
+                            <h3><i class="fas fa-exclamation-triangle"></i> Cảnh báo & Sự kiện</h3>
+                            <div class="alert-controls">
+                                <button class="control-btn-modern" id="clearAlerts">
+                                    <i class="fas fa-broom"></i>
+                                    Xóa tất cả
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="alerts-content">
+                            <div class="alert-item-modern high-priority">
+                                <div class="alert-indicator">
+                                    <i class="fas fa-exclamation-triangle"></i>
+                                </div>
+                                <div class="alert-content-modern">
+                                    <div class="alert-header">
+                                        <span class="alert-title">Tắc nghẽn nghiêm trọng</span>
+                                        <span class="alert-time">2 phút trước</span>
+                                    </div>
+                                    <div class="alert-description">
+                                        Ngã tư 3: Mật độ xe vượt ngưỡng 40 xe/km
+                                    </div>
+                                    <div class="alert-actions">
+                                        <button class="alert-action-btn primary">
+                                            <i class="fas fa-magic"></i>
+                                            Tối ưu tự động
+                                        </button>
+                                        <button class="alert-action-btn secondary">
+                                            <i class="fas fa-eye"></i>
+                                            Xem chi tiết
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="alert-item-modern medium-priority">
+                                <div class="alert-indicator">
+                                    <i class="fas fa-info-circle"></i>
+                                </div>
+                                <div class="alert-content-modern">
+                                    <div class="alert-header">
+                                        <span class="alert-title">Vi phạm giao thông</span>
+                                        <span class="alert-time">5 phút trước</span>
+                                    </div>
+                                    <div class="alert-description">
+                                        Camera 1: Phát hiện xe vượt đèn đỏ
+                                    </div>
+                                    <div class="alert-actions">
+                                        <button class="alert-action-btn secondary">
+                                            <i class="fas fa-camera"></i>
+                                            Xem ảnh
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="alert-item-modern low-priority">
+                                <div class="alert-indicator">
+                                    <i class="fas fa-check-circle"></i>
+                                </div>
+                                <div class="alert-content-modern">
+                                    <div class="alert-header">
+                                        <span class="alert-title">Hệ thống hoạt động bình thường</span>
+                                        <span class="alert-time">10 phút trước</span>
+                                    </div>
+                                    <div class="alert-description">
+                                        Tất cả ngã tư khác đang hoạt động ổn định
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Advanced AI Optimization Panel -->
+            <div class="ai-optimization-panel">
+                <div class="optimization-header">
+                    <div class="header-content">
+                        <h3><i class="fas fa-brain"></i> AI Tối ưu Hóa Thông Minh</h3>
+                        <div class="ai-status-indicator">
+                            <div class="ai-brain-animation">
+                                <div class="brain-pulse"></div>
+                                <i class="fas fa-brain"></i>
+                            </div>
+                            <div class="ai-status-text">
+                                <span class="status-label">AI đang phân tích</span>
+                                <span class="analysis-progress">Độ tin cậy: 94%</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+                
+                <div class="optimization-content">
+                    <!-- AI Recommendations Section -->
+                    <div class="recommendations-section">
+                        <div class="recommendations-header">
+                            <h4><i class="fas fa-lightbulb"></i> Đề xuất Tối ưu từ AI</h4>
+                            <div class="recommendation-refresh">
+                                <button class="refresh-btn-modern" id="refreshRecommendations">
+                                    <i class="fas fa-sync-alt"></i>
+                                    Làm mới
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="recommendations-grid">
+                            <div class="recommendation-card priority-high">
+                                <div class="card-header-recommendation">
+                                    <div class="recommendation-priority">
+                                        <span class="priority-badge high">Ưu tiên cao</span>
+                                        <span class="confidence-score">96% tin cậy</span>
+                                    </div>
+                                    <div class="recommendation-type">
+                                        <i class="fas fa-traffic-light"></i>
+                                        <span>Tối ưu đèn giao thông</span>
+                                    </div>
+                                </div>
+                                <div class="card-content-recommendation">
+                                    <h5>Giảm tắc nghẽn Ngã tư 3</h5>
+                                    <div class="recommendation-details">
+                                        <div class="change-suggestion">
+                                            <span class="change-label">Đèn xanh Ngã tư 3:</span>
+                                            <span class="change-value">+15 giây</span>
+                                        </div>
+                                        <div class="change-suggestion">
+                                            <span class="change-label">Đèn đỏ Ngã tư 1:</span>
+                                            <span class="change-value">-8 giây</span>
+                                        </div>
+                                        <div class="change-suggestion">
+                                            <span class="change-label">Đèn đỏ Ngã tư 2:</span>
+                                            <span class="change-value">-5 giây</span>
+                                        </div>
+                                    </div>
+                                    <div class="expected-results">
+                                        <div class="result-item positive">
+                                            <i class="fas fa-arrow-down"></i>
+                                            <span>Giảm 22% thời gian chờ</span>
+                                        </div>
+                                        <div class="result-item positive">
+                                            <i class="fas fa-arrow-down"></i>
+                                            <span>Giảm 18% tắc nghẽn</span>
+                                        </div>
+                                        <div class="result-item positive">
+                                            <i class="fas fa-arrow-up"></i>
+                                            <span>Tăng 12% thông lượng</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-actions-recommendation">
+                                    <button class="action-btn primary" data-action="apply" data-scenario="1">
+                                        <i class="fas fa-play"></i>
+                                        Áp dụng ngay
+                                    </button>
+                                    <button class="action-btn secondary" data-action="simulate" data-scenario="1">
+                                        <i class="fas fa-eye"></i>
+                                        Mô phỏng
+                                    </button>
+                                    <button class="action-btn tertiary" data-action="schedule" data-scenario="1">
+                                        <i class="fas fa-clock"></i>
+                                        Lên lịch
+                                    </button>
+                                </div>
+                            </div>
+                            
+                            <div class="recommendation-card priority-medium">
+                                <div class="card-header-recommendation">
+                                    <div class="recommendation-priority">
+                                        <span class="priority-badge medium">Ưu tiên trung bình</span>
+                                        <span class="confidence-score">89% tin cậy</span>
+                                    </div>
+                                    <div class="recommendation-type">
+                                        <i class="fas fa-route"></i>
+                                        <span>Tối ưu luồng giao thông</span>
+                                    </div>
+                                </div>
+                                <div class="card-content-recommendation">
+                                    <h5>Cân bằng luồng tuyến đường</h5>
+                                    <div class="recommendation-details">
+                                        <div class="change-suggestion">
+                                            <span class="change-label">Đồng bộ đèn 2-4:</span>
+                                            <span class="change-value">Pha lệch 10s</span>
+                                        </div>
+                                        <div class="change-suggestion">
+                                            <span class="change-label">Chu kỳ tối ưu:</span>
+                                            <span class="change-value">90 giây</span>
+                                        </div>
+                                    </div>
+                                    <div class="expected-results">
+                                        <div class="result-item positive">
+                                            <i class="fas fa-arrow-down"></i>
+                                            <span>Giảm 10% thời gian chờ</span>
+                                        </div>
+                                        <div class="result-item positive">
+                                            <i class="fas fa-balance-scale"></i>
+                                            <span>Cân bằng luồng tốt hơn</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-actions-recommendation">
+                                    <button class="action-btn primary" data-action="apply" data-scenario="2">
+                                        <i class="fas fa-play"></i>
+                                        Áp dụng
+                                    </button>
+                                    <button class="action-btn secondary" data-action="simulate" data-scenario="2">
+                                        <i class="fas fa-eye"></i>
+                                        Mô phỏng
+                                    </button>
+                                </div>
+                            </div>
+                            
+                            <div class="recommendation-card priority-low">
+                                <div class="card-header-recommendation">
+                                    <div class="recommendation-priority">
+                                        <span class="priority-badge low">Ưu tiên thấp</span>
+                                        <span class="confidence-score">76% tin cậy</span>
+                                    </div>
+                                    <div class="recommendation-type">
+                                        <i class="fas fa-chart-line"></i>
+                                        <span>Tối ưu hiệu suất</span>
+                                    </div>
+                                </div>
+                                <div class="card-content-recommendation">
+                                    <h5>Tinh chỉnh chu kỳ đèn</h5>
+                                    <div class="recommendation-details">
+                                        <div class="change-suggestion">
+                                            <span class="change-label">Chu kỳ ban đêm:</span>
+                                            <span class="change-value">60 giây</span>
+                                        </div>
+                                        <div class="change-suggestion">
+                                            <span class="change-label">Áp dụng lúc:</span>
+                                            <span class="change-value">22:00 - 06:00</span>
+                                        </div>
+                                    </div>
+                                    <div class="expected-results">
+                                        <div class="result-item positive">
+                                            <i class="fas fa-leaf"></i>
+                                            <span>Tiết kiệm 15% năng lượng</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-actions-recommendation">
+                                    <button class="action-btn secondary" data-action="schedule" data-scenario="3">
+                                        <i class="fas fa-clock"></i>
+                                        Lên lịch
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Performance Analytics -->
+                    <div class="performance-section">
+                        <div class="performance-header">
+                            <h4><i class="fas fa-chart-bar"></i> Hiệu suất Tối ưu</h4>
+                            <div class="performance-controls">
+                                <select class="time-selector">
+                                    <option value="realtime">Thời gian thực</option>
+                                    <option value="1hour">1 giờ qua</option>
+                                    <option value="24hours">24 giờ qua</option>
+                                    <option value="7days">7 ngày qua</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="performance-metrics-grid">
+                            <div class="metric-card-advanced success">
+                                <div class="metric-header-advanced">
+                                    <div class="metric-icon-advanced">
+                                        <i class="fas fa-clock"></i>
+                                    </div>
+                                    <div class="metric-title">Thời gian chờ TB</div>
+                                </div>
+                                <div class="metric-content-advanced">
+                                    <div class="metric-value-large">38s</div>
+                                    <div class="metric-comparison">
+                                        <span class="comparison-value positive">-12s</span>
+                                        <span class="comparison-label">so với trước</span>
+                                    </div>
+                                    <div class="metric-chart">
+                                        <div class="chart-bar" style="height: 60%"></div>
+                                        <div class="chart-bar" style="height: 80%"></div>
+                                        <div class="chart-bar" style="height: 70%"></div>
+                                        <div class="chart-bar" style="height: 50%"></div>
+                                        <div class="chart-bar" style="height: 40%"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="metric-card-advanced info">
+                                <div class="metric-header-advanced">
+                                    <div class="metric-icon-advanced">
+                                        <i class="fas fa-road"></i>
+                                    </div>
+                                    <div class="metric-title">Thông lượng</div>
+                                </div>
+                                <div class="metric-content-advanced">
+                                    <div class="metric-value-large">1,247</div>
+                                    <div class="metric-comparison">
+                                        <span class="comparison-value positive">+156</span>
+                                        <span class="comparison-label">xe/giờ</span>
+                                    </div>
+                                    <div class="metric-chart">
+                                        <div class="chart-bar" style="height: 40%"></div>
+                                        <div class="chart-bar" style="height: 50%"></div>
+                                        <div class="chart-bar" style="height: 70%"></div>
+                                        <div class="chart-bar" style="height: 80%"></div>
+                                        <div class="chart-bar" style="height: 90%"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="metric-card-advanced warning">
+                                <div class="metric-header-advanced">
+                                    <div class="metric-icon-advanced">
+                                        <i class="fas fa-car-crash"></i>
+                                    </div>
+                                    <div class="metric-title">Tắc nghẽn</div>
+                                </div>
+                                <div class="metric-content-advanced">
+                                    <div class="metric-value-large">18%</div>
+                                    <div class="metric-comparison">
+                                        <span class="comparison-value positive">-8%</span>
+                                        <span class="comparison-label">giảm so với trước</span>
+                                    </div>
+                                    <div class="metric-chart">
+                                        <div class="chart-bar" style="height: 90%"></div>
+                                        <div class="chart-bar" style="height: 80%"></div>
+                                        <div class="chart-bar" style="height: 60%"></div>
+                                        <div class="chart-bar" style="height: 40%"></div>
+                                        <div class="chart-bar" style="height: 30%"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="metric-card-advanced primary">
+                                <div class="metric-header-advanced">
+                                    <div class="metric-icon-advanced">
+                                        <i class="fas fa-leaf"></i>
+                                    </div>
+                                    <div class="metric-title">Hiệu quả năng lượng</div>
+                                </div>
+                                <div class="metric-content-advanced">
+                                    <div class="metric-value-large">91%</div>
+                                    <div class="metric-comparison">
+                                        <span class="comparison-value positive">+8%</span>
+                                        <span class="comparison-label">cải thiện</span>
+                                    </div>
+                                    <div class="metric-chart">
+                                        <div class="chart-bar" style="height: 70%"></div>
+                                        <div class="chart-bar" style="height: 75%"></div>
+                                        <div class="chart-bar" style="height: 80%"></div>
+                                        <div class="chart-bar" style="height: 85%"></div>
+                                        <div class="chart-bar" style="height: 90%"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Implementation History -->
+                    <div class="implementation-history">
+                        <div class="history-header">
+                            <h4><i class="fas fa-history"></i> Lịch sử Triển khai</h4>
+                            <div class="history-filters">
+                                <button class="filter-btn active" data-filter="all">Tất cả</button>
+                                <button class="filter-btn" data-filter="success">Thành công</button>
+                                <button class="filter-btn" data-filter="partial">Một phần</button>
+                                <button class="filter-btn" data-filter="failed">Thất bại</button>
+                            </div>
+                        </div>
+                        
+                        <div class="history-timeline">
+                            <div class="timeline-item success">
+                                <div class="timeline-marker success">
+                                    <i class="fas fa-check"></i>
+                                </div>
+                                <div class="timeline-content">
+                                    <div class="timeline-header">
+                                        <span class="timeline-title">Tối ưu Ngã tư 3 - Giảm tắc nghẽn</span>
+                                        <span class="timeline-time">14:25 - Hôm nay</span>
+                                    </div>
+                                    <div class="timeline-description">
+                                        Đã áp dụng tăng đèn xanh +15s, giảm thời gian chờ 22%
+                                    </div>
+                                    <div class="timeline-results">
+                                        <span class="result-badge success">Giảm 22% thời gian chờ</span>
+                                        <span class="result-badge success">Tăng 15% thông lượng</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="timeline-item partial">
+                                <div class="timeline-marker partial">
+                                    <i class="fas fa-exclamation-triangle"></i>
+                                </div>
+                                <div class="timeline-content">
+                                    <div class="timeline-header">
+                                        <span class="timeline-title">Đồng bộ hóa toàn tuyến</span>
+                                        <span class="timeline-time">13:45 - Hôm nay</span>
+                                    </div>
+                                    <div class="timeline-description">
+                                        Áp dụng một phần do gián đoạn kết nối Ngã tư 5
+                                    </div>
+                                    <div class="timeline-results">
+                                        <span class="result-badge partial">Giảm 8% thời gian chờ</span>
+                                        <span class="result-badge warning">Ngã tư 5 chưa đồng bộ</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="timeline-item success">
+                                <div class="timeline-marker success">
+                                    <i class="fas fa-check"></i>
+                                </div>
+                                <div class="timeline-content">
+                                    <div class="timeline-header">
+                                        <span class="timeline-title">Tối ưu chu kỳ ban đêm</span>
+                                        <span class="timeline-time">22:30 - Hôm qua</span>
+                                    </div>
+                                    <div class="timeline-description">
+                                        Áp dụng chu kỳ 60s cho tất cả ngã tư từ 22:00-06:00
+                                    </div>
+                                    <div class="timeline-results">
+                                        <span class="result-badge success">Tiết kiệm 18% năng lượng</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section about">
+                    <div class="footer-logo">
+                        <i class="fas fa-traffic-light"></i>
+                        <span>Traffic System</span>
+                    </div>
+                    <p>Hệ thống quản lý giao thông thông minh, sử dụng AI và IoT để tối ưu hóa lưu lượng giao thông và đảm bảo an toàn cho người dân.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-section links">
+                    <h4>Liên kết nhanh</h4>
+                    <ul>
+                        <li><a href="#">Trang chủ</a></li>
+                        <li><a href="#">Tra cứu phạt nguội</a></li>
+                        <li><a href="#">Tình hình giao thông</a></li>
+                        <li><a href="#">Báo cáo vi phạm</a></li>
+                        <li><a href="#">Hướng dẫn sử dụng</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section contact">
+                    <h4>Liên hệ</h4>
+                    <ul>
+                        <li>
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>123 Đường ABC, Quận XYZ, TP. Hà Nội</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-phone"></i>
+                            <span>+84 123 456 789</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-envelope"></i>
+                            <span>info@trafficsystem.vn</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-clock"></i>
+                            <span>24/7 - Luôn sẵn sàng hỗ trợ</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section newsletter">
+                    <h4>Nhận thông báo mới</h4>
+                    <p>Đăng ký để nhận thông tin về tình hình giao thông và các cập nhật mới nhất từ hệ thống.</p>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Nhập email của bạn..." required>
+                        <button type="submit">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <div class="container">
+                    <p>&copy; 2025 Traffic System. Tất cả quyền được bảo lưu. Được phát triển với <i class="fas fa-heart"></i> bởi đội ngũ AI Traffic Solutions.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script src="smart-traffic-script.js"></script>
+    <script src="advanced-traffic-script.js"></script>
+</body>
+</html>
